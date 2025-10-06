@@ -200,18 +200,18 @@ input[type="text"]:focus, select:focus {
 
 .b-core { background: #dcfce7; color: #166534; border-color: #86efac; }
 .b-fringe { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+.b-emerg { background: #fce7f3; color: #9f1239; border-color: #f9a8d4; }
 .b-rec { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
 .b-eval { background: #fef9c3; color: #854d0e; border-color: #fde047; }
 .b-id { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
-.b-emerg { background: #fce7f3; color: #9f1239; border-color: #f9a8d4; }
 .b-rej { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
 
 [data-theme="dark"] .b-core { background: #14532d; color: #86efac; border-color: #166534; }
 [data-theme="dark"] .b-fringe { background: #1e3a8a; color: #93c5fd; border-color: #1e40af; }
+[data-theme="dark"] .b-emerg { background: #831843; color: #f9a8d4; border-color: #9f1239; }
 [data-theme="dark"] .b-rec { background: #581c87; color: #d8b4fe; border-color: #6b21a8; }
 [data-theme="dark"] .b-eval { background: #713f12; color: #fde047; border-color: #854d0e; }
 [data-theme="dark"] .b-id { background: #334155; color: #cbd5e1; border-color: #475569; }
-[data-theme="dark"] .b-emerg { background: #831843; color: #f9a8d4; border-color: #9f1239; }
 [data-theme="dark"] .b-rej { background: #7f1d1d; color: #fca5a5; border-color: #991b1b; }
 
 .meta {
@@ -407,22 +407,30 @@ input[type="text"]:focus, select:focus {
 .info-note {
   background: var(--bg-tertiary);
   border-left: 4px solid var(--accent);
-  padding: 16px;
+  padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
 }
 
 .info-note h3 {
-  font-size: 1rem;
-  margin-bottom: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
   color: var(--accent);
 }
 
 .info-note p {
   font-size: 14px;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 8px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.info-note code {
+  background: var(--bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
 }
 
 .icon {
@@ -445,10 +453,43 @@ input[type="text"]:focus, select:focus {
 
 @media print {
   body { background: white; color: black; padding: 0; }
-  .header-actions, .filters, .expand-icon { display: none !important; }
+  .header-actions, .filters, .expand-icon, .legend, .quick-ref { display: none !important; }
+  .header { margin-bottom: 10px; padding: 15px; }
+  .stats-bar { display: none; }
   .details { display: block !important; }
-  .card { page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 20px; }
-  .legend, .quick-ref, .info-note { page-break-before: always; }
+  .card { 
+    page-break-inside: avoid; 
+    border: 1px solid #ccc; 
+    margin-bottom: 10px; 
+    padding: 12px;
+    box-shadow: none;
+  }
+  .card-header { margin-bottom: 8px; }
+  .title-row h3 { font-size: 1rem; }
+  .badge { font-size: 9px; padding: 4px 8px; }
+  .meta { font-size: 12px; margin-bottom: 6px; }
+  .desc { font-size: 12px; margin-bottom: 8px; }
+  .problem { 
+    background: #f5f5f5 !important; 
+    border-left: 3px solid #666;
+    padding: 8px;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+  .problem strong { color: #333; }
+  .problem p { color: #333; }
+  .tags { margin-bottom: 8px; }
+  .tag { font-size: 10px; padding: 4px 8px; }
+  .details { margin-top: 10px; padding-top: 10px; }
+  .details-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .detail-section h4 { font-size: 13px; margin-bottom: 4px; }
+  .detail-section p, .detail-section ul { font-size: 11px; line-height: 1.4; }
+  .detail-section ul { margin-left: 15px; }
+  .info-note { 
+    page-break-before: always;
+    padding: 12px;
+    margin-top: 20px;
+  }
 }
 
 .stats-bar {
@@ -480,10 +521,6 @@ input[type="text"]:focus, select:focus {
 </div>
 </div>
 <div class="header-actions">
-<button class="btn btn-primary" onclick="exportData()" title="Export to JSON">
-<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-Export
-</button>
 <button class="btn btn-secondary" onclick="toggleDarkMode()" title="Toggle dark mode">
 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
 Theme
@@ -512,10 +549,10 @@ Print
 <option value="">All Statuses</option>
 <option>Active - Core</option>
 <option>Active - Fringe</option>
+<option>Emerging</option>
 <option>Recommended</option>
 <option>Evaluating</option>
 <option>Identified</option>
-<option>Emerging</option>
 <option>Rejected</option>
 </select>
 </div>
@@ -532,10 +569,10 @@ Showing <strong id="showing-count">0</strong> of <strong id="tech-count">0</stro
 <div class="legend-grid">
 <div class="legend-item"><span class="badge b-core">Active - Core</span><span>In production (enterprise-managed)</span></div>
 <div class="legend-item"><span class="badge b-fringe">Active - Fringe</span><span>User-managed tools</span></div>
+<div class="legend-item"><span class="badge b-emerg">Emerging</span><span>New/cutting-edge technology</span></div>
 <div class="legend-item"><span class="badge b-rec">Recommended</span><span>Strong candidates for adoption</span></div>
 <div class="legend-item"><span class="badge b-eval">Evaluating</span><span>Currently under review</span></div>
 <div class="legend-item"><span class="badge b-id">Identified</span><span>On our radar</span></div>
-<div class="legend-item"><span class="badge b-emerg">Emerging</span><span>New/cutting-edge technology</span></div>
 <div class="legend-item"><span class="badge b-rej">Rejected</span><span>Not moving forward</span></div>
 </div>
 </div>
@@ -551,7 +588,7 @@ Showing <strong id="showing-count">0</strong> of <strong id="tech-count">0</stro
 <div class="quick-item"><h4>Need smarter business intelligence?</h4><p>→ Sigma Computing, Tableau</p></div>
 <div class="quick-item"><h4>Need quantitative supply chain analytics?</h4><p>→ LOKAD</p></div>
 <div class="quick-item"><h4>Need automated document processing?</h4><p>→ Mulesoft</p></div>
-<div class="quick-item"><h4>Need AI-powered productivity?</h4><p>→ Microsoft Copilot, Zoom AI Companion, Agentforce</p></div>
+<div class="quick-item"><h4>Need AI-powered productivity?</h4><p>→ Microsoft Copilot, Zoom AI Companion</p></div>
 <div class="quick-item"><h4>Need process documentation?</h4><p>→ Scribe, Loom</p></div>
 <div class="quick-item"><h4>Need phishing protection?</h4><p>→ KnowBe4, Proofpoint, Mimecast</p></div>
 <div class="quick-item"><h4>Need extra file storage and security?</h4><p>→ Box (better than SharePoint for records)</p></div>
@@ -564,65 +601,69 @@ Showing <strong id="showing-count">0</strong> of <strong id="tech-count">0</stro
 
 <div class="info-note">
 <h3>How to Update This Catalog</h3>
-<p><strong>To edit:</strong> Export the data using the button above, make changes to the JSON, then update the technologies array in this HTML file.</p>
+<p><strong>To edit data:</strong> Update the <code>technologies</code> array in the JavaScript section of this HTML file. Each technology is an object with properties like name, vendor, category, status, description, etc.</p>
+<p><strong>To update GitHub:</strong></p>
+<p>1. Edit <code>index.html</code> locally or use GitHub's web editor</p>
+<p>2. Commit changes with a descriptive message (e.g., "Added Zenkraft, updated contacts")</p>
+<p>3. Changes go live automatically in 1-2 minutes at your GitHub Pages URL</p>
+<p style="margin-top:12px;"><strong>For Innovation Lab:</strong> <button class="btn btn-primary" onclick="exportData()" style="display:inline-flex;padding:6px 12px;font-size:13px;margin-left:8px;">Export JSON Data</button></p>
 <p><strong>Maintained by:</strong> Innovation Lab</p>
 </div>
 </div>
 
 <script>
 const technologies = [
-  {name:"Microsoft 365",vendor:"Microsoft",category:"Productivity & Collaboration",status:"Active - Core",description:"Enterprise productivity suite including Office apps, Teams, SharePoint, OneDrive, and Exchange",useCases:["Email & Calendar","Document Creation","Team Collaboration","File Storage","Video Conferencing"],pricing:"$6-57/user/month (varies by plan)",integrations:["All enterprise tools","Salesforce","Zoom","Various APIs"],aiCapabilities:"Copilot AI: $30/user/month add-on",contact:"Microsoft Account Team",notes:"Includes Azure infrastructure access"},
-  {name:"LeaseWorks Aeris",vendor:"LeaseWorks",category:"Asset & Lease Management",status:"Active - Core",description:"Aviation lease and asset management platform - core lease management product",useCases:["Engine & Aircraft Leasing","Contract Management","Lease Billing","Asset Tracking","Financial Calculations"],pricing:"Enterprise license - contact for pricing",integrations:["Limited - primarily standalone"],contact:"LeaseWorks Support",notes:"Part of LeaseWorks suite alongside AerisMATCH"},
-  {name:"LeaseWorks AerisMATCH",vendor:"LeaseWorks",category:"CRM",status:"Active - Core",description:"Aviation-specific CRM product within the LeaseWorks suite for lease and sales opportunity management",useCases:["Opportunity Management","Customer Relationships","Sales Pipeline","Lease Opportunities"],pricing:"Enterprise license - contact for pricing",integrations:["LeaseWorks Aeris"],contact:"LeaseWorks Support",notes:"CRM component of LeaseWorks platform"},
-  {name:"AvSight",vendor:"AvSight",category:"ERP - Aviation",status:"Active - Core",description:"Aviation-specific ERP for inventory, maintenance, and operations",useCases:["Parts Inventory","Work Orders","Sales Orders","Purchase Orders","MRO Operations"],pricing:"Enterprise license - contact for pricing",integrations:["Accounting Seed","Various APIs","Heroku (required for Aeroxchange buyer catalogs)"],aiCapabilities:"AvSight Intelligence: AI-powered insights, Quote Agent, Email-to-Quote automation (separate activation, consumption-based billing)",contact:"AvSight Account Team",notes:"Could potentially facilitate some Accounting Seed ERP functions. AvSight Intelligence includes Account Insights, Part Master Insights, and automated quoting capabilities."},
+  {name:"Microsoft 365",vendor:"Microsoft",category:"Productivity & Collaboration",status:"Active - Core",description:"Enterprise productivity suite including Office apps, Teams, SharePoint, OneDrive, and Exchange",useCases:["Email & Calendar","Document Creation","Team Collaboration","File Storage","Video Conferencing"],pricing:"$6-57/user/month (varies by plan)",integrations:["All enterprise tools","Salesforce","Zoom","Various APIs"],aiCapabilities:"Copilot AI: $30/user/month add-on",contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",notes:"Includes Azure infrastructure access"},
+  {name:"LeaseWorks Aeris",vendor:"LeaseWorks",category:"Asset & Lease Management",status:"Active - Core",description:"Aviation lease and asset management platform - core lease management product",useCases:["Engine & Aircraft Leasing","Contract Management","Lease Billing","Asset Tracking","Financial Calculations"],pricing:"Enterprise license - contact for pricing",integrations:["Limited - primarily standalone"],contact:"Diane Heron - diane.heron@portside.co",notes:"Part of LeaseWorks suite alongside AerisMATCH"},
+  {name:"LeaseWorks AerisMATCH",vendor:"LeaseWorks",category:"CRM",status:"Active - Core",description:"Aviation-specific CRM product within the LeaseWorks suite for lease and sales opportunity management",useCases:["Opportunity Management","Customer Relationships","Sales Pipeline","Lease Opportunities"],pricing:"Enterprise license - contact for pricing",integrations:["LeaseWorks Aeris"],contact:"Wendy Campanella - wendy.campanella@portside.co",notes:"CRM component of LeaseWorks platform"},
+  {name:"AvSight",vendor:"AvSight",category:"ERP - Aviation",status:"Active - Core",description:"Aviation-specific ERP for inventory, maintenance, and operations",useCases:["Parts Inventory","Work Orders","Sales Orders","Purchase Orders","MRO Operations"],pricing:"Enterprise license - contact for pricing",integrations:["Accounting Seed","Various APIs","Heroku (required for Aeroxchange buyer catalogs)"],aiCapabilities:"AvSight Intelligence: AI-powered insights, Quote Agent, Email-to-Quote automation (separate activation, consumption-based billing)",contact:"William Valley - wvalley@inscaletech.com",notes:"Could potentially facilitate some Accounting Seed ERP functions. AvSight Intelligence includes Account Insights, Part Master Insights, and automated quoting capabilities."},
   {name:"Accounting Seed (Core)",vendor:"Accounting Seed",category:"Finance & Accounting",status:"Active - Core",description:"Salesforce-native accounting and financial management - core GL/AP/AR functionality",useCases:["General Ledger","AP/AR","Financial Reporting","Multi-entity Accounting"],pricing:"Per user/month on Salesforce - contact for pricing",integrations:["Native Salesforce","AvSight","Banking APIs","AutoFX (currency conversion)","Sola Portal (payment processing & AR automation)"],contact:"Accounting Seed Support",notes:"Core financial product - see also Accounting Seed ERP. AutoFX handles automated currency conversion. Sola Portal (formerly Cardknox) enables ACH & CC payment acceptance with automated deposit reconciliation."},
   {name:"Accounting Seed ERP",vendor:"Accounting Seed",category:"ERP - Finance",status:"Active - Core",description:"ERP add-on to Accounting Seed providing extended enterprise resource planning capabilities",useCases:["Advanced Financial Management","Project Accounting","Resource Planning","Advanced Reporting"],pricing:"Add-on to Accounting Seed - contact for pricing",integrations:["Native Salesforce","Accounting Seed Core"],contact:"Accounting Seed Support",notes:"Actively used ERP add-on; could be facilitated via AvSight (historical discussion)"},
-  {name:"Own",vendor:"Own Company",category:"Data Backup & Recovery",status:"Active - Core",description:"Salesforce data backup and recovery solution",useCases:["Automated Backups","Data Recovery","Compliance","Data Archiving"],pricing:"Based on data volume - contact for pricing",integrations:["Native Salesforce"],contact:"Own Support"},
-  {name:"Tableau Desktop",vendor:"Salesforce/Tableau",category:"Business Intelligence",status:"Active - Core",description:"Data visualization and business intelligence platform",useCases:["Custom Dashboards","Data Analysis","Financial Reports","KPI Tracking"],pricing:"$75-250/user/month depending on edition",integrations:["Multiple data sources","Salesforce","Excel","Databases"],contact:"Tableau Account Team"},
-  {name:"Zoom",vendor:"Zoom",category:"Communication & Video",status:"Active - Core",description:"Video conferencing, webinars, and communication platform",useCases:["Video Meetings","Webinars","Phone System","Team Chat"],pricing:"$15-20/user/month for business plans",integrations:["Microsoft 365","Salesforce","Calendar systems"],aiCapabilities:"AI Companion included with paid plans",contact:"Zoom Account Team"},
+  {name:"Own",vendor:"Own Company",category:"Data Backup & Recovery",status:"Active - Core",description:"Salesforce data backup and recovery solution",useCases:["Automated Backups","Data Recovery","Compliance","Data Archiving"],pricing:"Based on data volume - contact for pricing",integrations:["Native Salesforce"],contact:"Self-service - reach out to Innovation Lab or Own Support directly"},
+  {name:"Tableau Desktop",vendor:"Salesforce/Tableau",category:"Business Intelligence",status:"Active - Core",description:"Data visualization and business intelligence platform",useCases:["Custom Dashboards","Data Analysis","Financial Reports","KPI Tracking"],pricing:"$75-250/user/month depending on edition",integrations:["Multiple data sources","Salesforce","Excel","Databases"],contact:"Victoria Henderson - vhenderson@salesforce.com"},
+  {name:"Zoom",vendor:"Zoom",category:"Communication & Video",status:"Active - Core",description:"Video conferencing, webinars, and communication platform",useCases:["Video Meetings","Webinars","Phone System","Team Chat"],pricing:"$15-20/user/month for business plans",integrations:["Microsoft 365","Salesforce","Calendar systems"],aiCapabilities:"AI Companion included with paid plans: Meeting summaries, action items, email composition, chat threading",contact:"Jake Schell - jake.schell@zoom.us",notes:"AI Companion features included with paid Zoom plans"},
   {name:"Adobe Acrobat",vendor:"Adobe",category:"Document Management",status:"Active - Core",description:"PDF creation, editing, and management tool",useCases:["PDF Creation","Document Editing","Form Filling","Digital Signatures","Document Collaboration"],pricing:"Mix of perpetual licenses and Acrobat DC subscription ($12.99-29.99/user/month)",integrations:["Microsoft Office","Various document systems"],contact:"Adobe Account Team",notes:"Currently distributed across legacy license and cloud versions"},
-  {name:"Box",vendor:"Box.com",category:"Document Management & Storage",status:"Active - Core",description:"Enterprise content management and file sharing platform for leasing and records management",useCases:["Leasing Documents","Records Management","Secure File Sharing","Document Collaboration","External Sharing"],pricing:"Enterprise pricing - typically $15-35/user/month",integrations:["Microsoft 365","Salesforce","Various enterprise apps"],contact:"Box Account Team",notes:"Managed at enterprise level; better handling, sharing, and limitations than SharePoint for leasing/records"},
+  {name:"Box",vendor:"Box.com",category:"Document Management & Storage",status:"Active - Core",description:"Enterprise content management and file sharing platform for leasing and records management",useCases:["Leasing Documents","Records Management","Secure File Sharing","Document Collaboration","External Sharing"],pricing:"Enterprise pricing - typically $15-35/user/month",integrations:["Microsoft 365","Salesforce","Various enterprise apps"],contact:"Olga Adler - oadler@box.com",notes:"Managed at enterprise level; better handling, sharing, and limitations than SharePoint for leasing/records"},
   {name:"Wix",vendor:"Wix",category:"Website & Digital Presence",status:"Active - Core",description:"Website building and hosting platform for TrueAero's web presence",useCases:["Company Website","Marketing Pages","Content Management","SEO"],pricing:"Business plans $17-159/month depending on features",integrations:["Various marketing tools","Analytics","Email marketing"],contact:"Wix Support"},
-  {name:"Microsoft Azure",vendor:"Microsoft",category:"Cloud Infrastructure",status:"Active - Core",description:"Cloud computing platform and infrastructure services (accessed via Microsoft 365)",useCases:["Cloud Storage","Virtual Machines","App Hosting","Database Services","Identity Management"],pricing:"Consumption-based - varies by service",integrations:["Microsoft 365","Native Microsoft ecosystem"],contact:"Microsoft Account Team",notes:"Infrastructure accessed through Microsoft 365 subscription"},
-  {name:"Mulesoft Anypoint Platform",vendor:"Salesforce/Mulesoft",category:"Integration & Automation",status:"Active - Core",description:"iPaaS and intelligent document processing platform",useCases:["System Integration","API Management","IDP - Invoice Processing","KYC Automation","PO Processing"],pricing:"$50K+/year (3-year discount available)",integrations:["Salesforce native","Various enterprise systems"],aiCapabilities:"Automated document extraction and processing",problemSolves:"Manual document processing, system integration, data flow automation",notes:"Deep discount for 3 years + no implementation cost",contact:"Taylor Leath - tleath@salesforce.com"},
-  {name:"Zenkraft",vendor:"Zenkraft (by Bringg)",category:"Logistics & Delivery",status:"Active - Core",description:"Salesforce Commerce Cloud integration with Bringg for delivery management and logistics",useCases:["Last-mile Delivery","Order Fulfillment","Route Optimization","Real-time Tracking","Delivery Notifications"],pricing:"Contact for pricing",integrations:["Salesforce Commerce Cloud","Bringg platform"],problemSolves:"Delivery logistics, customer delivery experience, order tracking, fulfillment operations",contact:"UPDATE CONTACT INFO",notes:"Connects Salesforce Commerce Cloud with Bringg's delivery orchestration platform"},
+  {name:"Microsoft Azure",vendor:"Microsoft",category:"Cloud Infrastructure",status:"Active - Core",description:"Cloud computing platform and infrastructure services (accessed via Microsoft 365)",useCases:["Cloud Storage","Virtual Machines","App Hosting","Database Services","Identity Management"],pricing:"Consumption-based - varies by service",integrations:["Microsoft 365","Native Microsoft ecosystem"],contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",notes:"Infrastructure accessed through Microsoft 365 subscription"},
+  {name:"Mulesoft Anypoint Platform",vendor:"Salesforce/Mulesoft",category:"Integration & Automation",status:"Active - Core",description:"iPaaS and intelligent document processing platform",useCases:["System Integration","API Management","IDP - Invoice Processing","KYC Automation","PO Processing"],pricing:"$50K+/year (3-year discount available)",integrations:["Salesforce native","Various enterprise systems"],aiCapabilities:"Automated document extraction and processing",problemSolves:"Manual document processing, system integration, data flow automation",notes:"Deep discount for 3 years + no implementation cost",contact:"Ava Larson - ava.larson@salesforce.com"},
+  {name:"Zenkraft",vendor:"Zenkraft (by Bringg)",category:"Logistics & Delivery",status:"Active - Core",description:"Salesforce Commerce Cloud integration with Bringg for delivery management and logistics",useCases:["Last-mile Delivery","Order Fulfillment","Route Optimization","Real-time Tracking","Delivery Notifications"],pricing:"Contact for pricing",integrations:["Salesforce Commerce Cloud","Bringg platform"],problemSolves:"Delivery logistics, customer delivery experience, order tracking, fulfillment operations",contact:"Self-service - reach out to Innovation Lab or Zenkraft Support directly",notes:"Connects Salesforce Commerce Cloud with Bringg's delivery orchestration platform"},
   {name:"Otter.ai",vendor:"Otter.ai",category:"Productivity & Collaboration",status:"Active - Fringe",description:"AI-powered meeting transcription and notes",useCases:["Meeting Transcription","Action Items","Searchable Notes"],pricing:"Free tier available; Pro $10-17/user/month",integrations:["Zoom","Microsoft Teams","Google Meet"],aiCapabilities:"Real-time transcription, AI summaries",contact:"Self-service"},
   {name:"Loom",vendor:"Loom (Atlassian)",category:"Communication & Video",status:"Active - Fringe",description:"Quick video messaging and screen recording",useCases:["Training Videos","Async Communication","Screen Sharing","Product Demos"],pricing:"Free tier; Business $12.50/user/month",integrations:["Slack","Gmail","Various embeds"],contact:"Self-service"},
   {name:"Scribe",vendor:"Scribe",category:"Knowledge Management",status:"Active - Fringe",description:"Automatically generates step-by-step guides from workflows",useCases:["Process Documentation","Training Materials","SOPs","Knowledge Base"],pricing:"Free tier; Pro $12-29/user/month",integrations:["URL embedding","Various platforms"],contact:"UPDATE CONTACT INFO"},
   {name:"Lucid",vendor:"Lucid Software",category:"Productivity & Collaboration",status:"Active - Fringe",description:"Visual collaboration suite (Lucidchart, Lucidspark)",useCases:["Flowcharts","Process Mapping","Org Charts","Brainstorming"],pricing:"$7.95-27/user/month depending on plan",integrations:["Microsoft 365","Google Workspace","Salesforce"],contact:"Self-service"},
   {name:"Calendly",vendor:"Calendly",category:"Scheduling & Productivity",status:"Active - Fringe",description:"Automated scheduling tool for meetings and appointments",useCases:["Meeting Scheduling","Calendar Management","External Appointments","Booking Pages"],pricing:"Free tier; Professional $10-16/user/month",integrations:["Zoom","Microsoft Teams","Google Calendar","Outlook"],contact:"Self-service",notes:"Alternative to Zoom scheduler; used by many team members"},
+  {name:"Salesforce Agentforce",vendor:"Salesforce",category:"AI Agents",status:"Emerging",description:"Autonomous AI agents that work within Salesforce",useCases:["Customer Service Automation","Sales Assistance","Data Entry","Process Automation"],pricing:"$125/user/month (add-on to Enterprise+) or $500/100K credits",integrations:["Native Salesforce platform"],aiCapabilities:"Autonomous AI agents with reasoning and actions",problemSolves:"Process automation, scalability, 24/7 operations, repetitive task elimination",notes:"Recently announced; $2 per conversation model also available",contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"},
   {name:"DocuSign",vendor:"DocuSign",category:"Digital Signatures & CLM",status:"Recommended",description:"Industry-leading eSignature and agreement automation",useCases:["Contract Signing","Lease Agreements","Vendor Agreements","Compliance Documents"],pricing:"$10-40/user/month; Enterprise custom",integrations:["Salesforce","Microsoft 365","Various CRMs and ERPs"],problemSolves:"Manual signature collection, contract turnaround time, paper-based processes",alternatives:["Adobe Sign","PandaDoc"],contact:"UPDATE CONTACT INFO",notes:"Personal: $10/mo (5 envelopes); Standard: $25/mo (100 envelopes/yr); Business Pro: $40/mo"},
+  {name:"Salesforce Sales Cloud",vendor:"Salesforce",category:"CRM",status:"Recommended",description:"Enterprise CRM platform for sales process management",useCases:["Lead Management","Opportunity Tracking","Account Management","Sales Analytics","Forecasting"],pricing:"$25/user/mo (Starter, up to 10 users); $100-330/user/mo (Pro/Enterprise/Unlimited)",integrations:["Native Salesforce ecosystem","Email","Calendar","Phone systems"],aiCapabilities:"Agentforce AI: +$125/user/month for Enterprise+",problemSolves:"Sales process visibility, lead tracking, customer data management, sales forecasting",alternatives:["HubSpot CRM (easier adoption, lower cost)"],contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",notes:"August 2025: 6% price increase announced. Consider HubSpot as simpler alternative."},
+  {name:"Salesforce Marketing Cloud",vendor:"Salesforce",category:"Marketing Automation",status:"Recommended",description:"Enterprise marketing automation and customer journey platform",useCases:["Email Campaigns","Customer Journeys","Personalization","Marketing Analytics"],pricing:"$1,250-3,250/org/month (Growth/Advanced editions)",integrations:["Native Salesforce","Sales Cloud","Service Cloud"],aiCapabilities:"Einstein AI for personalization and optimization",problemSolves:"Marketing automation, customer engagement, campaign tracking",contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",notes:"Priced per organization, not per user"},
+  {name:"Microsoft Copilot",vendor:"Microsoft",category:"AI & Productivity",status:"Recommended",description:"AI assistant integrated across Microsoft 365",useCases:["Document Writing","Email Drafting","Data Analysis","Meeting Summaries","Code Assistance"],pricing:"$30/user/month (add-on to M365)",integrations:["Native Microsoft 365"],aiCapabilities:"GPT-4 based AI across all Office apps",problemSolves:"Productivity enhancement, content creation, data insights, time savings",contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)"},
   {name:"LinkSquares",vendor:"LinkSquares",category:"Contract Lifecycle Management",status:"Evaluating",description:"AI-powered contract analysis, management, and execution",useCases:["Contract Repository","AI Contract Analysis","Obligation Tracking","Renewal Management"],pricing:"Enterprise pricing - typically $30K-100K+ annually",integrations:["Salesforce","DocuSign","Microsoft 365"],aiCapabilities:"AI contract analysis and extraction",problemSolves:"Contract visibility, risk management, manual review, scattered contract storage",alternatives:["Ironclad","Concord"],contact:"Hannah Jordow - hjordow@linksquares.com"},
-  {name:"Salesforce Sales Cloud",vendor:"Salesforce",category:"CRM",status:"Recommended",description:"Enterprise CRM platform for sales process management",useCases:["Lead Management","Opportunity Tracking","Account Management","Sales Analytics","Forecasting"],pricing:"$25/user/mo (Starter, up to 10 users); $100-330/user/mo (Pro/Enterprise/Unlimited)",integrations:["Native Salesforce ecosystem","Email","Calendar","Phone systems"],aiCapabilities:"Agentforce AI: +$125/user/month for Enterprise+",problemSolves:"Sales process visibility, lead tracking, customer data management, sales forecasting",alternatives:["HubSpot CRM (easier adoption, lower cost)"],contact:"UPDATE CONTACT INFO",notes:"August 2025: 6% price increase announced. Consider HubSpot as simpler alternative."},
   {name:"HubSpot CRM",vendor:"HubSpot",category:"CRM",status:"Evaluating",description:"All-in-one CRM, marketing, and sales platform - easier adoption alternative to Salesforce",useCases:["Contact Management","Deal Pipeline","Email Marketing","Marketing Automation","Lead Scoring"],pricing:"Free tier available; Starter $15-20/user/month; Pro $90+/user/month",integrations:["Gmail","Outlook","Salesforce","Various marketing tools"],problemSolves:"Unified sales and marketing platform, easier adoption than Salesforce",alternatives:["Salesforce Sales Cloud (more powerful, higher cost)"],contact:"HubSpot Sales",notes:"Alternative to Salesforce; lower cost with simpler user experience"},
-  {name:"Salesforce Marketing Cloud",vendor:"Salesforce",category:"Marketing Automation",status:"Recommended",description:"Enterprise marketing automation and customer journey platform",useCases:["Email Campaigns","Customer Journeys","Personalization","Marketing Analytics"],pricing:"$1,250-3,250/org/month (Growth/Advanced editions)",integrations:["Native Salesforce","Sales Cloud","Service Cloud"],aiCapabilities:"Einstein AI for personalization and optimization",problemSolves:"Marketing automation, customer engagement, campaign tracking",contact:"Salesforce Marketing Team",notes:"Priced per organization, not per user"},
-  {name:"Salesforce Commerce Cloud",vendor:"Salesforce",category:"E-commerce",status:"Recommended",description:"Enterprise B2B/B2C e-commerce platform",useCases:["Online Parts Store","B2B Customer Portal","Quote-to-Order","Digital Commerce"],pricing:"2-3% of GMV + platform fees",integrations:["Native Salesforce","ERP systems","Payment gateways"],aiCapabilities:"Einstein for product recommendations",problemSolves:"Digital sales channels, customer self-service, online ordering, 24/7 parts availability",alternatives:["Shopify Plus","BigCommerce","SalesEdge Commerce"],contact:"Salesforce Commerce Team"},
+  {name:"Salesforce Commerce Cloud",vendor:"Salesforce",category:"E-commerce",status:"Evaluating",description:"Enterprise B2B/B2C e-commerce platform",useCases:["Online Parts Store","B2B Customer Portal","Quote-to-Order","Digital Commerce"],pricing:"2-3% of GMV + platform fees",integrations:["Native Salesforce","ERP systems","Payment gateways"],aiCapabilities:"Einstein for product recommendations",problemSolves:"Digital sales channels, customer self-service, online ordering, 24/7 parts availability",alternatives:["Shopify Plus","BigCommerce","SalesEdge Commerce"],contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"},
   {name:"Snowflake",vendor:"Snowflake",category:"Data Platform",status:"Evaluating",description:"Cloud data platform for data warehousing and analytics",useCases:["Data Warehouse","Data Lake","Data Sharing","Analytics Foundation"],pricing:"$2-4/credit on-demand; $1.50-2.50 with annual commits; Storage $23-40/TB/month",integrations:["Salesforce","Tableau","Various BI tools","ETL tools"],problemSolves:"Data silos, scalability, single source of truth, cross-system analytics",alternatives:["Databricks","Google BigQuery","Oracle Cloud"],contact:"Cody Hudgens - cody.hudgins@snowflake.com",notes:"Typical spend: $500-2K/month (small teams) to $10K-50K+/month (enterprise). Consumption-based. Alternative: Oracle Cloud."},
   {name:"Sigma Computing",vendor:"Sigma Computing",category:"Business Intelligence",status:"Evaluating",description:"Cloud-native BI with spreadsheet interface for business users",useCases:["Self-Service Analytics","Dashboards","Ad-hoc Analysis","Forecasting"],pricing:"Contact for pricing - typically $50-150/user/month",integrations:["Snowflake (primary)","Various cloud data warehouses"],problemSolves:"BI accessibility, Tableau learning curve, user adoption, forecasting capabilities",alternatives:["Tableau Desktop (more complex)"],notes:"Alternative to Tableau; lower learning curve; hands-on support; includes forecasting",contact:"Cameron Pierro - cameron@sigmacomputing.com"},
   {name:"LOKAD",vendor:"LOKAD",category:"Supply Chain Analytics",status:"Evaluating",description:"Financial and quantitative analysis for supply chain optimization",useCases:["Asset Modeling","Pricing Analytics","Valuations","Demand Forecasting"],pricing:"$20K/month (~$240K/year)",integrations:["Various data sources"],problemSolves:"Supply chain optimization, pricing strategy, inventory management, asset valuation",contact:"Luciano Lisiotti - l.lisiotti@lokad.com"},
-  {name:"Microsoft Copilot",vendor:"Microsoft",category:"AI & Productivity",status:"Recommended",description:"AI assistant integrated across Microsoft 365",useCases:["Document Writing","Email Drafting","Data Analysis","Meeting Summaries","Code Assistance"],pricing:"$30/user/month (add-on to M365)",integrations:["Native Microsoft 365"],aiCapabilities:"GPT-4 based AI across all Office apps",problemSolves:"Productivity enhancement, content creation, data insights, time savings",contact:"Microsoft Account Team"},
-  {name:"Zoom AI Companion",vendor:"Zoom",category:"AI & Communication",status:"Recommended",description:"AI features within Zoom platform",useCases:["Meeting Summaries","Action Items","Email Composition","Chat Threading"],pricing:"Included with paid Zoom plans",integrations:["Native Zoom platform"],aiCapabilities:"Meeting intelligence, summarization",problemSolves:"Meeting follow-up, action tracking, productivity",contact:"Zoom Account Team"},
-  {name:"Salesforce Agentforce",vendor:"Salesforce",category:"AI Agents",status:"Emerging",description:"Autonomous AI agents that work within Salesforce",useCases:["Customer Service Automation","Sales Assistance","Data Entry","Process Automation"],pricing:"$125/user/month (add-on to Enterprise+) or $500/100K credits",integrations:["Native Salesforce platform"],aiCapabilities:"Autonomous AI agents with reasoning and actions",problemSolves:"Process automation, scalability, 24/7 operations, repetitive task elimination",notes:"Recently announced; $2 per conversation model also available",contact:"Salesforce Account Team"},
-  {name:"KnowBe4",vendor:"KnowBe4",category:"Cybersecurity - Training",status:"Recommended",description:"Security awareness training and simulated phishing platform",useCases:["Phishing Simulation","Security Training","Compliance Training","User Awareness","Reporting"],pricing:"$5-15/user/year depending on features and volume",integrations:["Microsoft 365","Google Workspace","Various email platforms"],problemSolves:"Phishing susceptibility, security awareness gaps, human error in security",alternatives:["Proofpoint Security Awareness","Cofense PhishMe"],contact:"KnowBe4 Sales"},
-  {name:"Proofpoint Email Protection",vendor:"Proofpoint",category:"Cybersecurity - Email",status:"Recommended",description:"Advanced email security and threat protection",useCases:["Phishing Protection","Email Filtering","Malware Detection","Account Takeover Protection","DLP"],pricing:"Enterprise pricing - typically $3-8/user/month",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Advanced phishing attacks, business email compromise, malware distribution",alternatives:["Mimecast","Barracuda"],contact:"Proofpoint Sales"},
-  {name:"Mimecast",vendor:"Mimecast",category:"Cybersecurity - Email",status:"Evaluating",description:"Email security, archiving, and continuity platform - alternative to Proofpoint",useCases:["Email Security","Archiving","Continuity","URL Protection","Impersonation Protection"],pricing:"$3-7/user/month depending on bundle",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Email-based threats, data loss, email downtime",alternatives:["Proofpoint (preferred)","Barracuda"],contact:"Mimecast Sales"},
   {name:"SalesEdge Commerce",vendor:"ILS",category:"E-commerce",status:"Evaluating",description:"ERP-integrated online stores by ILS for aviation parts",useCases:["Selling consumables","Expendables","PMA parts","New parts from distributorship","USM"],pricing:"Contact for pricing",integrations:["ILS","Early discussions with AvSight"],contact:"Bob McCabe - rmccabe@ilsmart.com"},
-  {name:"Seamless.ai",vendor:"Seamless.ai",category:"Sales Intelligence",status:"Evaluating",description:"Lead generation and CRM data enrichment",useCases:["Sales Prospecting","Contact Discovery","CRM Data Clean-up","Lead Enrichment"],pricing:"$1K-60K/year depending on scale",integrations:["Salesforce","Various CRMs"],problemSolves:"Outdated contact data, lead generation, CRM data quality",alternatives:["ZoomInfo","Apollo.io"],notes:"Alternative options: ZoomInfo, Apollo.io. Scalable solution; concerns about large database size and costs",contact:"Joanna McKasty - joanna.mckasty@seamless.expert"},
-  {name:"Coalfire Services",vendor:"RICOH/Coalfire",category:"Cybersecurity - Services",status:"Evaluating",description:"Platform-enabled cybersecurity services",useCases:["Compliance Assessment","Penetration Testing","Risk Advisory","Security Audits"],pricing:"Project-based - contact for pricing",notes:"Complements existing infrastructure and MSP",contact:"UPDATE CONTACT INFO"},
-  {name:"Tipalti",vendor:"Tipalti",category:"Finance & Accounting",status:"Identified",description:"AP automation and supplier payment management",useCases:["Invoice Processing","AP Automation","Supplier Payments","Global Payments"],pricing:"Contact for pricing - typically starts at $149/month + per-payment fees",integrations:["Various ERP and accounting systems"],problemSolves:"Manual AP processes, payment errors, global payment complexity",contact:"Matthew Perrott - matthew.perrott@tipalti.com"},
-  {name:"Adaptive Planning",vendor:"Workday",category:"FP&A",status:"Identified",description:"Enterprise performance management and planning",useCases:["Financial Planning","Budgeting","Workforce Planning","Financial Close"],pricing:"Enterprise pricing - contact for quote",notes:"Not suitable: Through Revelwood; 1,000+ user minimums don't fit TrueAero size",contact:"Terry Kerans - Tkerans@Revelwood.com"},
-  {name:"Go Autonomous",vendor:"Go Autonomous",category:"E-commerce & Automation",status:"Rejected",description:"AI-powered platform for automating commerce activities including document and email processing",useCases:["Automated email processing","RFQs","POs","ROs","Invoices"],pricing:"$100K+ per year",integrations:["ERP systems"],problemSolves:"Manual document processing",notes:"Must go all-in with Sales to leverage accounting automation; rejected due to scope requirements",contact:"Madalina Verdes - madalina@goautonomous.io"},
+  {name:"Mimecast",vendor:"Mimecast",category:"Cybersecurity - Email",status:"Evaluating",description:"Email security, archiving, and continuity platform - alternative to Proofpoint",useCases:["Email Security","Archiving","Continuity","URL Protection","Impersonation Protection"],pricing:"$3-7/user/month depending on bundle",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Email-based threats, data loss, email downtime",alternatives:["Proofpoint (preferred)","Barracuda"],contact:"Mimecast Sales"},
+  {name:"Coalfire Services",vendor:"RICOH",category:"Cybersecurity - Services",status:"Evaluating",description:"Platform-enabled cybersecurity services",useCases:["Compliance Assessment","Penetration Testing","Risk Advisory","Security Audits"],pricing:"Project-based - contact for pricing",notes:"Complements existing infrastructure and MSP",contact:"Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"},
   {name:"Airflo.ai",vendor:"Airflo.ai",category:"E-commerce & Automation",status:"Evaluating",description:"AI-Powered Workflow Automation for Aerospace",useCases:["Sales emails","Inspection","Repairs","Invoice matching"],pricing:"Unknown",integrations:["AvSight"],problemSolves:"Manual aerospace workflows",notes:"New venture, partnership/influence capability; limited scope, one developer",contact:"Richard - richard@airflo.ai"},
   {name:"DataManager",vendor:"DataManager Aero",category:"Asset & Lease Management",status:"Evaluating",description:"Leasing and asset management with automated lease billing and analytics",useCases:["Managing engine and APU assets","Marketed as LeaseWorks alternative"],pricing:"Unknown",integrations:["None - standalone with integrated features"],notes:"UX designed for users to perform tasks within single product",contact:"Ashley Stevens - astevens@datamanager.aero"},
+  {name:"Ricoh Managed Adoption Services",vendor:"RICOH",category:"Training & Adoption",status:"Evaluating",description:"Microsoft 365 training, security awareness, and simulated phishing campaigns managed by dedicated Service Adoption Specialist",useCases:["M365 Training","Security Awareness Training","Phishing Simulations","Custom Content Publishing","Learning Path Development"],pricing:"Minimum 50 seats required; contact for pricing",integrations:["Microsoft 365","Azure AD","Exchange Online","Teams"],problemSolves:"Technology adoption, employee productivity, security awareness gaps, phishing susceptibility",alternatives:["KnowBe4 (security only)","Udemy (generic learning)"],notes:"Requires corresponding Ricoh M365 support services. Includes monthly campaign analysis and roadmap development. Three tiers: Basic, Standard, Advanced",contact:"Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"},
+  {name:"KnowBe4",vendor:"KnowBe4",category:"Cybersecurity - Training",status:"Identified",description:"Security awareness training and simulated phishing platform",useCases:["Phishing Simulation","Security Training","Compliance Training","User Awareness","Reporting"],pricing:"$5-15/user/year depending on features and volume",integrations:["Microsoft 365","Google Workspace","Various email platforms"],problemSolves:"Phishing susceptibility, security awareness gaps, human error in security",alternatives:["Proofpoint Security Awareness","Cofense PhishMe"],contact:"KnowBe4 Sales"},
+  {name:"Proofpoint Email Protection",vendor:"Proofpoint",category:"Cybersecurity - Email",status:"Identified",description:"Advanced email security and threat protection",useCases:["Phishing Protection","Email Filtering","Malware Detection","Account Takeover Protection","DLP"],pricing:"Enterprise pricing - typically $3-8/user/month",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Advanced phishing attacks, business email compromise, malware distribution",alternatives:["Mimecast","Barracuda"],contact:"Proofpoint Sales"},
+  {name:"Seamless.ai",vendor:"Seamless.ai",category:"Sales Intelligence",status:"Identified",description:"Lead generation and CRM data enrichment",useCases:["Sales Prospecting","Contact Discovery","CRM Data Clean-up","Lead Enrichment"],pricing:"$1K-60K/year depending on scale",integrations:["Salesforce","Various CRMs"],problemSolves:"Outdated contact data, lead generation, CRM data quality",alternatives:["ZoomInfo","Apollo.io"],notes:"Alternative options: ZoomInfo, Apollo.io. Scalable solution; concerns about large database size and costs",contact:"Joanna McKasty - joanna.mckasty@seamless.expert"},
+  {name:"Tipalti",vendor:"Tipalti",category:"Finance & Accounting",status:"Identified",description:"AP automation and supplier payment management",useCases:["Invoice Processing","AP Automation","Supplier Payments","Global Payments"],pricing:"Contact for pricing - typically starts at $149/month + per-payment fees",integrations:["Various ERP and accounting systems"],problemSolves:"Manual AP processes, payment errors, global payment complexity",contact:"Matthew Perrott - matthew.perrott@tipalti.com"},
+  {name:"Adaptive Planning",vendor:"Workday",category:"FP&A",status:"Identified",description:"Enterprise performance management and planning",useCases:["Financial Planning","Budgeting","Workforce Planning","Financial Close"],pricing:"Enterprise pricing - contact for quote",notes:"Not suitable: Through Revelwood; 1,000+ user minimums don't fit TrueAero size",contact:"Terry Kerans - Tkerans@Revelwood.com"},
+  {name:"Go Autonomous",vendor:"Go Autonomous",category:"E-commerce & Automation",status:"Identified",description:"AI-powered platform for automating commerce activities including document and email processing",useCases:["Automated email processing","RFQs","POs","ROs","Invoices"],pricing:"$100K+ per year",integrations:["ERP systems"],problemSolves:"Manual document processing",notes:"Must go all-in with Sales to leverage accounting automation; rejected due to scope requirements",contact:"Madalina Verdes - madalina@goautonomous.io"},
   {name:"Oracle Cloud",vendor:"Oracle",category:"Data Platform",status:"Identified",description:"Cloud infrastructure with servers, storage, network, applications and services",useCases:["Looking at as Snowflake alternative"],pricing:"Unknown",notes:"Oracle products not natively integrated with Salesforce - more admin and engineering work required",contact:"Carly Schimberg - carly.schimberg@oracle.com"},
-  {name:"Creatio",vendor:"Studio Creatio",category:"Low-Code Platform",status:"Identified",description:"AI driven low-code platforms for citizen development",useCases:["Process automation","Custom app development"],pricing:"Contact for pricing",contact:"N/A"},
-  {name:"Ricoh Managed Adoption Services",vendor:"RICOH/Coalfire",category:"Training & Adoption",status:"Evaluating",description:"Microsoft 365 training, security awareness, and simulated phishing campaigns managed by dedicated Service Adoption Specialist",useCases:["M365 Training","Security Awareness Training","Phishing Simulations","Custom Content Publishing","Learning Path Development"],pricing:"Minimum 50 seats required; contact for pricing",integrations:["Microsoft 365","Azure AD","Exchange Online","Teams"],problemSolves:"Technology adoption, employee productivity, security awareness gaps, phishing susceptibility",alternatives:["KnowBe4 (security only)","Udemy (generic learning)"],notes:"Requires corresponding Ricoh M365 support services. Includes monthly campaign analysis and roadmap development. Three tiers: Basic, Standard, Advanced",contact:"UPDATE CONTACT INFO"}
+  {name:"Creatio",vendor:"Studio Creatio",category:"Low-Code Platform",status:"Identified",description:"AI driven low-code platforms for citizen development",useCases:["Process automation","Custom app development"],pricing:"Contact for pricing",contact:"N/A"}
 ];
 
 const statusOrder = {"Active - Core":1,"Active - Fringe":2,"Emerging":3,"Recommended":4,"Evaluating":5,"Identified":6,"Rejected":7};
 
 const getStatusClass = (status) => {
-  const map = {"Active - Core":"b-core","Active - Fringe":"b-fringe","Recommended":"b-rec","Evaluating":"b-eval","Identified":"b-id","Emerging":"b-emerg","Rejected":"b-rej"};
+  const map = {"Active - Core":"b-core","Active - Fringe":"b-fringe","Emerging":"b-emerg","Recommended":"b-rec","Evaluating":"b-eval","Identified":"b-id","Rejected":"b-rej"};
   return map[status] || "b-id";
 };
 
