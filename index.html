@@ -15,6 +15,8 @@
   --border: #e2e8f0;
   --accent: #3b82f6;
   --accent-hover: #2563eb;
+  --success: #10b981;
+  --warning: #f59e0b;
 }
 
 [data-theme="dark"] {
@@ -61,7 +63,7 @@ body {
 }
 
 .header h1 { font-size: 2rem; margin-bottom: 10px; }
-.header p { color: var(--text-tertiary); font-size: 14px; margin-bottom: 5px; }
+.header-subtitle { color: var(--text-tertiary); font-size: 14px; margin-bottom: 15px; }
 
 .header-actions {
   display: flex;
@@ -76,7 +78,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: all 0.2s;
@@ -108,683 +110,1169 @@ body {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   margin-bottom: 20px;
-  transition: background 0.3s;
-}
-
-.filter-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
-  margin-bottom: 15px;
 }
 
-.filter-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-}
-
-input[type="text"], select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 14px;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  transition: all 0.2s;
-}
-
-input[type="text"]:focus, select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.card {
-  background: var(--bg-secondary);
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid var(--border);
-}
-
-.card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transform: translateY(-2px);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 12px;
-}
-
-.title-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  flex: 1;
-}
-
-.title-row h3 {
-  font-size: 1.25rem;
-  color: var(--text-primary);
-}
-
-.badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  border: 1px solid;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.expand-icon {
-  transition: transform 0.3s;
-  opacity: 0.5;
-}
-
-.expand-icon.rotated {
-  transform: rotate(180deg);
-}
-
-.b-core { background: #dcfce7; color: #166534; border-color: #86efac; }
-.b-fringe { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
-.b-emerg { background: #fce7f3; color: #9f1239; border-color: #f9a8d4; }
-.b-rec { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
-.b-eval { background: #fef9c3; color: #854d0e; border-color: #fde047; }
-.b-id { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
-.b-rej { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
-
-[data-theme="dark"] .b-core { background: #14532d; color: #86efac; border-color: #166534; }
-[data-theme="dark"] .b-fringe { background: #1e3a8a; color: #93c5fd; border-color: #1e40af; }
-[data-theme="dark"] .b-emerg { background: #831843; color: #f9a8d4; border-color: #9f1239; }
-[data-theme="dark"] .b-rec { background: #581c87; color: #d8b4fe; border-color: #6b21a8; }
-[data-theme="dark"] .b-eval { background: #713f12; color: #fde047; border-color: #854d0e; }
-[data-theme="dark"] .b-id { background: #334155; color: #cbd5e1; border-color: #475569; }
-[data-theme="dark"] .b-rej { background: #7f1d1d; color: #fca5a5; border-color: #991b1b; }
-
-.meta {
-  font-size: 14px;
-  color: var(--text-tertiary);
-  margin-bottom: 12px;
-}
-
-.meta strong { color: var(--text-secondary); }
-.meta .price { color: var(--accent); font-weight: 600; }
-
-.desc {
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-  line-height: 1.6;
-}
-
-.problem {
-  background: #fffbeb;
-  border-left: 4px solid #f59e0b;
-  padding: 12px;
-  margin-bottom: 16px;
-  border-radius: 6px;
-}
-
-[data-theme="dark"] .problem {
-  background: #713f12;
-  border-color: #f59e0b;
-}
-
-.problem strong {
-  display: block;
-  color: #92400e;
-  font-size: 11px;
-  font-weight: 700;
-  margin-bottom: 6px;
-  letter-spacing: 0.5px;
-}
-
-[data-theme="dark"] .problem strong { color: #fde047; }
-
-.problem p {
-  color: #78350f;
-  font-size: 14px;
-  margin: 0;
-}
-
-[data-theme="dark"] .problem p { color: #fde047; }
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tag {
-  background: #eff6ff;
-  color: #1e40af;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-[data-theme="dark"] .tag {
-  background: #1e3a8a;
-  color: #93c5fd;
-}
-
-.details {
-  display: none;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px solid var(--border);
-  animation: slideDown 0.3s ease-out;
-}
-
-.details.show { display: block; }
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-}
-
-.detail-section h4 {
-  color: var(--text-primary);
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.detail-section p, .detail-section ul {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.detail-section ul {
-  margin-left: 20px;
-  margin-top: 6px;
-}
-
-.detail-section li {
-  margin-bottom: 4px;
-}
-
-.legend, .quick-ref {
-  background: var(--bg-secondary);
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  margin-top: 20px;
-  transition: background 0.3s;
-}
-
-.legend h3, .quick-ref h3 {
-  margin-bottom: 20px;
-  font-size: 1.25rem;
-}
-
-.legend-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.legend-item {
+.filter-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.legend-item span:last-child {
-  font-size: 12px;
-  color: var(--text-tertiary);
+.filter-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
-}
-
-.quick-item {
-  border-left: 4px solid var(--accent);
-  padding-left: 16px;
+.filter-group input,
+.filter-group select {
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
   transition: all 0.2s;
 }
 
-.quick-item:hover {
-  border-color: var(--accent-hover);
-  padding-left: 20px;
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
-.quick-item h4 {
-  font-size: 14px;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-
-.quick-item p {
-  font-size: 13px;
-  color: var(--text-tertiary);
-}
-
-.no-results {
+.stats {
   background: var(--bg-secondary);
-  padding: 60px 20px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.no-results p {
-  color: var(--text-tertiary);
-  font-size: 1.125rem;
-}
-
-.info-note {
-  background: var(--bg-tertiary);
-  border-left: 4px solid var(--accent);
   padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.info-note h3 {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--accent);
 }
 
-.info-note p {
+.stat-label {
   font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 10px;
-}
-
-.info-note code {
-  background: var(--bg-secondary);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-}
-
-@media (max-width: 768px) {
-  body { padding: 12px; }
-  .header { padding: 20px; }
-  .header h1 { font-size: 1.5rem; }
-  .header-top { flex-direction: column; }
-  .filter-grid { grid-template-columns: 1fr; }
-  .details-grid { grid-template-columns: 1fr; }
-  .card { padding: 16px; }
-  .title-row h3 { font-size: 1.1rem; }
-  .btn { padding: 8px 12px; font-size: 13px; }
-}
-
-@media print {
-  body { background: white; color: black; padding: 0; }
-  .header-actions, .filters, .expand-icon, .legend, .quick-ref { display: none !important; }
-  .header { margin-bottom: 10px; padding: 15px; }
-  .stats-bar { display: none; }
-  .details { display: block !important; }
-  .card { 
-    page-break-inside: avoid; 
-    border: 1px solid #ccc; 
-    margin-bottom: 10px; 
-    padding: 12px;
-    box-shadow: none;
-  }
-  .card-header { margin-bottom: 8px; }
-  .title-row h3 { font-size: 1rem; }
-  .badge { font-size: 9px; padding: 4px 8px; }
-  .meta { font-size: 12px; margin-bottom: 6px; }
-  .desc { font-size: 12px; margin-bottom: 8px; }
-  .problem { 
-    background: #f5f5f5 !important; 
-    border-left: 3px solid #666;
-    padding: 8px;
-    margin-bottom: 8px;
-    page-break-inside: avoid;
-  }
-  .problem strong { color: #333; }
-  .problem p { color: #333; }
-  .tags { margin-bottom: 8px; }
-  .tag { font-size: 10px; padding: 4px 8px; }
-  .details { margin-top: 10px; padding-top: 10px; }
-  .details-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .detail-section h4 { font-size: 13px; margin-bottom: 4px; }
-  .detail-section p, .detail-section ul { font-size: 11px; line-height: 1.4; }
-  .detail-section ul { margin-left: 15px; }
-  .info-note { 
-    page-break-before: always;
-    padding: 12px;
-    margin-top: 20px;
-  }
-}
-
-.stats-bar {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 12px 0;
-  font-size: 13px;
   color: var(--text-tertiary);
 }
 
-.stat-item strong {
+.tech-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.tech-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.tech-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.tech-card-header {
+  padding: 20px;
+  border-bottom: 2px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 15px;
+}
+
+.tech-card-header:hover {
+  background: var(--bg-tertiary);
+}
+
+.tech-info {
+  flex: 1;
+}
+
+.tech-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 5px;
   color: var(--text-primary);
+}
+
+.tech-vendor {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+.tech-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: 600;
+}
+
+.badge-status {
+  background: var(--success);
+  color: white;
+}
+
+.badge-category {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.expand-icon {
+  transition: transform 0.3s;
+  color: var(--text-tertiary);
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.tech-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.tech-card-body.expanded {
+  max-height: 2000px;
+}
+
+.tech-details {
+  padding: 20px;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-content {
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+}
+
+.detail-list li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.detail-list li:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.footer-note {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .header h1 { font-size: 1.5rem; }
+  .filters { grid-template-columns: 1fr; }
+  .stats { flex-direction: column; }
+}
+
+@media print {
+  .header-actions,
+  .filters,
+  .stats { display: none; }
+  .tech-card { page-break-inside: avoid; }
+  .tech-card-body { max-height: none !important; }
 }
 </style>
 </head>
 <body>
+
 <div class="container">
-<div class="header">
-<div class="header-top">
-<div>
-<h1>TrueAero Technology Catalog</h1>
-<p>Reference guide for department leaders to identify technology solutions by business need</p>
-<p>For additional questions, please reach out to the Innovation Lab</p>
-<div class="stats-bar">
-<span class="stat-item">Last Updated: <strong>October 2025</strong></span>
-<span class="stat-item">Total: <strong><span id="total-count">0</span> Technologies</strong></span>
-</div>
-</div>
-<div class="header-actions">
-<button class="btn btn-secondary" onclick="toggleDarkMode()" title="Toggle dark mode">
-<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-Theme
-</button>
-<button class="btn btn-secondary" onclick="window.print()" title="Print catalog">
-<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-Print
-</button>
-</div>
-</div>
-</div>
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>TrueAero Technology Catalog</h1>
+        <p class="header-subtitle">Enterprise technology catalog and vendor guide</p>
+        <p class="header-subtitle"><strong>Hosted on:</strong> GitHub Pages • <strong>Maintained by:</strong> Innovation Lab</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-primary" onclick="exportToCSV()">
+          <span>📊</span> Export to CSV
+        </button>
+        <button class="btn btn-secondary" onclick="toggleTheme()">
+          <span id="theme-icon">🌙</span> <span id="theme-text">Dark Mode</span>
+        </button>
+        <button class="btn btn-secondary" onclick="window.print()">
+          <span>🖨️</span> Print
+        </button>
+      </div>
+    </div>
+  </div>
 
-<div class="filters">
-<div class="filter-grid">
-<div class="filter-group">
-<label>Search</label>
-<input type="text" id="search" placeholder="Search products, vendors, use cases..." oninput="filterTechnologies()">
-</div>
-<div class="filter-group">
-<label>Category</label>
-<select id="category-filter" onchange="filterTechnologies()"><option value="">All Categories</option></select>
-</div>
-<div class="filter-group">
-<label>Status</label>
-<select id="status-filter" onchange="filterTechnologies()">
-<option value="">All Statuses</option>
-<option>Active - Core</option>
-<option>Active - Fringe</option>
-<option>Emerging</option>
-<option>Recommended</option>
-<option>Evaluating</option>
-<option>Identified</option>
-<option>Rejected</option>
-</select>
-</div>
-</div>
-<div style="font-size:14px;color:var(--text-tertiary)">
-Showing <strong id="showing-count">0</strong> of <strong id="tech-count">0</strong> technologies
-</div>
-</div>
+  <div class="filters">
+    <div class="filter-group">
+      <label>Search</label>
+      <input type="text" id="searchInput" placeholder="Search technologies..." onkeyup="filterTechnologies()">
+    </div>
+    <div class="filter-group">
+      <label>Category</label>
+      <select id="categoryFilter" onchange="filterTechnologies()">
+        <option value="All">All Categories</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="statusFilter" onchange="filterTechnologies()">
+        <option value="All">All Statuses</option>
+      </select>
+    </div>
+  </div>
 
-<div id="tech-list"></div>
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number" id="totalCount">0</div>
+      <div class="stat-label">Total Technologies</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="filteredCount">0</div>
+      <div class="stat-label">Displayed</div>
+    </div>
+  </div>
 
-<div class="legend">
-<h3>Status Legend</h3>
-<div class="legend-grid">
-<div class="legend-item"><span class="badge b-core">Active - Core</span><span>In production (enterprise-managed)</span></div>
-<div class="legend-item"><span class="badge b-fringe">Active - Fringe</span><span>User-managed tools</span></div>
-<div class="legend-item"><span class="badge b-emerg">Emerging</span><span>New/cutting-edge technology</span></div>
-<div class="legend-item"><span class="badge b-rec">Recommended</span><span>Strong candidates for adoption</span></div>
-<div class="legend-item"><span class="badge b-eval">Evaluating</span><span>Currently under review</span></div>
-<div class="legend-item"><span class="badge b-id">Identified</span><span>On our radar</span></div>
-<div class="legend-item"><span class="badge b-rej">Rejected</span><span>Not moving forward</span></div>
-</div>
-</div>
+  <div class="tech-grid" id="techGrid"></div>
 
-<div class="quick-ref">
-<h3>Quick Reference: Common Problems → Solutions</h3>
-<div class="quick-grid">
-<div class="quick-item"><h4>Need to automate contract signing?</h4><p>→ DocuSign</p></div>
-<div class="quick-item"><h4>Need contract lifecycle management?</h4><p>→ LinkSquares</p></div>
-<div class="quick-item"><h4>Need better sales visibility?</h4><p>→ Salesforce Sales Cloud, HubSpot, AerisMATCH</p></div>
-<div class="quick-item"><h4>Need to sell parts online?</h4><p>→ Salesforce Commerce Cloud, SalesEdge Commerce (ILS)</p></div>
-<div class="quick-item"><h4>Need unified data warehouse?</h4><p>→ Snowflake, Oracle Cloud</p></div>
-<div class="quick-item"><h4>Need smarter business intelligence?</h4><p>→ Sigma Computing, Tableau</p></div>
-<div class="quick-item"><h4>Need quantitative supply chain analytics?</h4><p>→ LOKAD</p></div>
-<div class="quick-item"><h4>Need automated document processing?</h4><p>→ Mulesoft</p></div>
-<div class="quick-item"><h4>Need AI-powered productivity?</h4><p>→ Microsoft Copilot, Zoom AI Companion</p></div>
-<div class="quick-item"><h4>Need process documentation?</h4><p>→ Scribe, Loom</p></div>
-<div class="quick-item"><h4>Need phishing protection?</h4><p>→ KnowBe4, Proofpoint, Mimecast</p></div>
-<div class="quick-item"><h4>Need extra file storage and security?</h4><p>→ Box (better than SharePoint for records)</p></div>
-<div class="quick-item"><h4>Need system integrations?</h4><p>→ Mulesoft Anypoint Platform</p></div>
-<div class="quick-item"><h4>Need marketing automation?</h4><p>→ Salesforce Marketing Cloud, HubSpot</p></div>
-<div class="quick-item"><h4>Need CRM data enrichment?</h4><p>→ Seamless.ai</p></div>
-<div class="quick-item"><h4>Need automated scheduling?</h4><p>→ Calendly, Zoom Scheduler</p></div>
-</div>
-</div>
-
-<div class="info-note">
-<h3>How to Update This Catalog</h3>
-<p><strong>To edit data:</strong> Update the <code>technologies</code> array in the JavaScript section of this HTML file. Each technology is an object with properties like name, vendor, category, status, description, etc.</p>
-<p><strong>To update GitHub:</strong></p>
-<p>1. Edit <code>index.html</code> locally or use GitHub's web editor</p>
-<p>2. Commit changes with a descriptive message (e.g., "Added Zenkraft, updated contacts")</p>
-<p>3. Changes go live automatically in 1-2 minutes at your GitHub Pages URL</p>
-<p style="margin-top:12px;"><strong>For Innovation Lab:</strong> <button class="btn btn-primary" onclick="exportData()" style="display:inline-flex;padding:6px 12px;font-size:13px;margin-left:8px;">Export JSON Data</button></p>
-<p><strong>Maintained by:</strong> Innovation Lab</p>
-</div>
+  <div class="footer">
+    <p><strong>Maintenance Instructions for Innovation Lab:</strong></p>
+    <p>To add/update technologies, edit the <code>technologies</code> array in the JavaScript section at the bottom of this file. Each technology is an object with properties like name, vendor, category, status, description, etc.</p>
+    <div class="footer-note">
+      <button class="btn btn-secondary" onclick="exportToJSON()" style="margin-top: 10px;">
+        <span>💾</span> Export Source Data (JSON)
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
+// TECHNOLOGY DATA - Edit this array to update the catalog
 const technologies = [
-  {name:"Microsoft 365",vendor:"Microsoft",category:"Productivity & Collaboration",status:"Active - Core",description:"Enterprise productivity suite including Office apps, Teams, SharePoint, OneDrive, and Exchange",useCases:["Email & Calendar","Document Creation","Team Collaboration","File Storage","Video Conferencing"],pricing:"$6-57/user/month (varies by plan)",integrations:["All enterprise tools","Salesforce","Zoom","Various APIs"],aiCapabilities:"Copilot AI: $30/user/month add-on",contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",notes:"Includes Azure infrastructure access"},
-  {name:"LeaseWorks Aeris",vendor:"LeaseWorks",category:"Asset & Lease Management",status:"Active - Core",description:"Aviation lease and asset management platform - core lease management product",useCases:["Engine & Aircraft Leasing","Contract Management","Lease Billing","Asset Tracking","Financial Calculations"],pricing:"Enterprise license - contact for pricing",integrations:["Limited - primarily standalone"],contact:"Diane Heron - diane.heron@portside.co",notes:"Part of LeaseWorks suite alongside AerisMATCH"},
-  {name:"LeaseWorks AerisMATCH",vendor:"LeaseWorks",category:"CRM",status:"Active - Core",description:"Aviation-specific CRM product within the LeaseWorks suite for lease and sales opportunity management",useCases:["Opportunity Management","Customer Relationships","Sales Pipeline","Lease Opportunities"],pricing:"Enterprise license - contact for pricing",integrations:["LeaseWorks Aeris"],contact:"Wendy Campanella - wendy.campanella@portside.co",notes:"CRM component of LeaseWorks platform"},
-  {name:"AvSight",vendor:"AvSight",category:"ERP - Aviation",status:"Active - Core",description:"Aviation-specific ERP for inventory, maintenance, and operations",useCases:["Parts Inventory","Work Orders","Sales Orders","Purchase Orders","MRO Operations"],pricing:"Enterprise license - contact for pricing",integrations:["Accounting Seed","Various APIs","Heroku (required for Aeroxchange buyer catalogs)"],aiCapabilities:"AvSight Intelligence: AI-powered insights, Quote Agent, Email-to-Quote automation (separate activation, consumption-based billing)",contact:"William Valley - wvalley@inscaletech.com",notes:"Could potentially facilitate some Accounting Seed ERP functions. AvSight Intelligence includes Account Insights, Part Master Insights, and automated quoting capabilities."},
-  {name:"Accounting Seed (Core)",vendor:"Accounting Seed",category:"Finance & Accounting",status:"Active - Core",description:"Salesforce-native accounting and financial management - core GL/AP/AR functionality",useCases:["General Ledger","AP/AR","Financial Reporting","Multi-entity Accounting"],pricing:"Per user/month on Salesforce - contact for pricing",integrations:["Native Salesforce","AvSight","Banking APIs","AutoFX (currency conversion)","Sola Portal (payment processing & AR automation)"],contact:"Accounting Seed Support",notes:"Core financial product - see also Accounting Seed ERP. AutoFX handles automated currency conversion. Sola Portal (formerly Cardknox) enables ACH & CC payment acceptance with automated deposit reconciliation."},
-  {name:"Accounting Seed ERP",vendor:"Accounting Seed",category:"ERP - Finance",status:"Active - Core",description:"ERP add-on to Accounting Seed providing extended enterprise resource planning capabilities",useCases:["Advanced Financial Management","Project Accounting","Resource Planning","Advanced Reporting"],pricing:"Add-on to Accounting Seed - contact for pricing",integrations:["Native Salesforce","Accounting Seed Core"],contact:"Accounting Seed Support",notes:"Actively used ERP add-on; could be facilitated via AvSight (historical discussion)"},
-  {name:"Own",vendor:"Own Company",category:"Data Backup & Recovery",status:"Active - Core",description:"Salesforce data backup and recovery solution",useCases:["Automated Backups","Data Recovery","Compliance","Data Archiving"],pricing:"Based on data volume - contact for pricing",integrations:["Native Salesforce"],contact:"Self-service - reach out to Innovation Lab or Own Support directly"},
-  {name:"Tableau Desktop",vendor:"Salesforce/Tableau",category:"Business Intelligence",status:"Active - Core",description:"Data visualization and business intelligence platform",useCases:["Custom Dashboards","Data Analysis","Financial Reports","KPI Tracking"],pricing:"$75-250/user/month depending on edition",integrations:["Multiple data sources","Salesforce","Excel","Databases"],contact:"Victoria Henderson - vhenderson@salesforce.com"},
-  {name:"Zoom",vendor:"Zoom",category:"Communication & Video",status:"Active - Core",description:"Video conferencing, webinars, and communication platform",useCases:["Video Meetings","Webinars","Phone System","Team Chat"],pricing:"$15-20/user/month for business plans",integrations:["Microsoft 365","Salesforce","Calendar systems"],aiCapabilities:"AI Companion included with paid plans: Meeting summaries, action items, email composition, chat threading",contact:"Jake Schell - jake.schell@zoom.us",notes:"AI Companion features included with paid Zoom plans"},
-  {name:"Adobe Acrobat",vendor:"Adobe",category:"Document Management",status:"Active - Core",description:"PDF creation, editing, and management tool",useCases:["PDF Creation","Document Editing","Form Filling","Digital Signatures","Document Collaboration"],pricing:"Mix of perpetual licenses and Acrobat DC subscription ($12.99-29.99/user/month)",integrations:["Microsoft Office","Various document systems"],contact:"Adobe Account Team",notes:"Currently distributed across legacy license and cloud versions"},
-  {name:"Box",vendor:"Box.com",category:"Document Management & Storage",status:"Active - Core",description:"Enterprise content management and file sharing platform for leasing and records management",useCases:["Leasing Documents","Records Management","Secure File Sharing","Document Collaboration","External Sharing"],pricing:"Enterprise pricing - typically $15-35/user/month",integrations:["Microsoft 365","Salesforce","Various enterprise apps"],contact:"Olga Adler - oadler@box.com",notes:"Managed at enterprise level; better handling, sharing, and limitations than SharePoint for leasing/records"},
-  {name:"Wix",vendor:"Wix",category:"Website & Digital Presence",status:"Active - Core",description:"Website building and hosting platform for TrueAero's web presence",useCases:["Company Website","Marketing Pages","Content Management","SEO"],pricing:"Business plans $17-159/month depending on features",integrations:["Various marketing tools","Analytics","Email marketing"],contact:"Wix Support"},
-  {name:"Microsoft Azure",vendor:"Microsoft",category:"Cloud Infrastructure",status:"Active - Core",description:"Cloud computing platform and infrastructure services (accessed via Microsoft 365)",useCases:["Cloud Storage","Virtual Machines","App Hosting","Database Services","Identity Management"],pricing:"Consumption-based - varies by service",integrations:["Microsoft 365","Native Microsoft ecosystem"],contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",notes:"Infrastructure accessed through Microsoft 365 subscription"},
-  {name:"Mulesoft Anypoint Platform",vendor:"Salesforce/Mulesoft",category:"Integration & Automation",status:"Active - Core",description:"iPaaS and intelligent document processing platform",useCases:["System Integration","API Management","IDP - Invoice Processing","KYC Automation","PO Processing"],pricing:"$50K+/year (3-year discount available)",integrations:["Salesforce native","Various enterprise systems"],aiCapabilities:"Automated document extraction and processing",problemSolves:"Manual document processing, system integration, data flow automation",notes:"Deep discount for 3 years + no implementation cost",contact:"Ava Larson - ava.larson@salesforce.com"},
-  {name:"Zenkraft",vendor:"Zenkraft (by Bringg)",category:"Logistics & Delivery",status:"Active - Core",description:"Salesforce Commerce Cloud integration with Bringg for delivery management and logistics",useCases:["Last-mile Delivery","Order Fulfillment","Route Optimization","Real-time Tracking","Delivery Notifications"],pricing:"Contact for pricing",integrations:["Salesforce Commerce Cloud","Bringg platform"],problemSolves:"Delivery logistics, customer delivery experience, order tracking, fulfillment operations",contact:"Self-service - reach out to Innovation Lab or Zenkraft Support directly",notes:"Connects Salesforce Commerce Cloud with Bringg's delivery orchestration platform"},
-  {name:"Otter.ai",vendor:"Otter.ai",category:"Productivity & Collaboration",status:"Active - Fringe",description:"AI-powered meeting transcription and notes",useCases:["Meeting Transcription","Action Items","Searchable Notes"],pricing:"Free tier available; Pro $10-17/user/month",integrations:["Zoom","Microsoft Teams","Google Meet"],aiCapabilities:"Real-time transcription, AI summaries",contact:"Self-service"},
-  {name:"Loom",vendor:"Loom (Atlassian)",category:"Communication & Video",status:"Active - Fringe",description:"Quick video messaging and screen recording",useCases:["Training Videos","Async Communication","Screen Sharing","Product Demos"],pricing:"Free tier; Business $12.50/user/month",integrations:["Slack","Gmail","Various embeds"],contact:"Self-service"},
-  {name:"Scribe",vendor:"Scribe",category:"Knowledge Management",status:"Active - Fringe",description:"Automatically generates step-by-step guides from workflows",useCases:["Process Documentation","Training Materials","SOPs","Knowledge Base"],pricing:"Free tier; Pro $12-29/user/month",integrations:["URL embedding","Various platforms"],contact:"UPDATE CONTACT INFO"},
-  {name:"Lucid",vendor:"Lucid Software",category:"Productivity & Collaboration",status:"Active - Fringe",description:"Visual collaboration suite (Lucidchart, Lucidspark)",useCases:["Flowcharts","Process Mapping","Org Charts","Brainstorming"],pricing:"$7.95-27/user/month depending on plan",integrations:["Microsoft 365","Google Workspace","Salesforce"],contact:"Self-service"},
-  {name:"Calendly",vendor:"Calendly",category:"Scheduling & Productivity",status:"Active - Fringe",description:"Automated scheduling tool for meetings and appointments",useCases:["Meeting Scheduling","Calendar Management","External Appointments","Booking Pages"],pricing:"Free tier; Professional $10-16/user/month",integrations:["Zoom","Microsoft Teams","Google Calendar","Outlook"],contact:"Self-service",notes:"Alternative to Zoom scheduler; used by many team members"},
-  {name:"Salesforce Agentforce",vendor:"Salesforce",category:"AI Agents",status:"Emerging",description:"Autonomous AI agents that work within Salesforce",useCases:["Customer Service Automation","Sales Assistance","Data Entry","Process Automation"],pricing:"$125/user/month (add-on to Enterprise+) or $500/100K credits",integrations:["Native Salesforce platform"],aiCapabilities:"Autonomous AI agents with reasoning and actions",problemSolves:"Process automation, scalability, 24/7 operations, repetitive task elimination",notes:"Recently announced; $2 per conversation model also available",contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"},
-  {name:"DocuSign",vendor:"DocuSign",category:"Digital Signatures & CLM",status:"Recommended",description:"Industry-leading eSignature and agreement automation",useCases:["Contract Signing","Lease Agreements","Vendor Agreements","Compliance Documents"],pricing:"$10-40/user/month; Enterprise custom",integrations:["Salesforce","Microsoft 365","Various CRMs and ERPs"],problemSolves:"Manual signature collection, contract turnaround time, paper-based processes",alternatives:["Adobe Sign","PandaDoc"],contact:"UPDATE CONTACT INFO",notes:"Personal: $10/mo (5 envelopes); Standard: $25/mo (100 envelopes/yr); Business Pro: $40/mo"},
-  {name:"Salesforce Sales Cloud",vendor:"Salesforce",category:"CRM",status:"Recommended",description:"Enterprise CRM platform for sales process management",useCases:["Lead Management","Opportunity Tracking","Account Management","Sales Analytics","Forecasting"],pricing:"$25/user/mo (Starter, up to 10 users); $100-330/user/mo (Pro/Enterprise/Unlimited)",integrations:["Native Salesforce ecosystem","Email","Calendar","Phone systems"],aiCapabilities:"Agentforce AI: +$125/user/month for Enterprise+",problemSolves:"Sales process visibility, lead tracking, customer data management, sales forecasting",alternatives:["HubSpot CRM (easier adoption, lower cost)"],contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",notes:"August 2025: 6% price increase announced. Consider HubSpot as simpler alternative."},
-  {name:"Salesforce Marketing Cloud",vendor:"Salesforce",category:"Marketing Automation",status:"Recommended",description:"Enterprise marketing automation and customer journey platform",useCases:["Email Campaigns","Customer Journeys","Personalization","Marketing Analytics"],pricing:"$1,250-3,250/org/month (Growth/Advanced editions)",integrations:["Native Salesforce","Sales Cloud","Service Cloud"],aiCapabilities:"Einstein AI for personalization and optimization",problemSolves:"Marketing automation, customer engagement, campaign tracking",contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",notes:"Priced per organization, not per user"},
-  {name:"Microsoft Copilot",vendor:"Microsoft",category:"AI & Productivity",status:"Recommended",description:"AI assistant integrated across Microsoft 365",useCases:["Document Writing","Email Drafting","Data Analysis","Meeting Summaries","Code Assistance"],pricing:"$30/user/month (add-on to M365)",integrations:["Native Microsoft 365"],aiCapabilities:"GPT-4 based AI across all Office apps",problemSolves:"Productivity enhancement, content creation, data insights, time savings",contact:"Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)"},
-  {name:"LinkSquares",vendor:"LinkSquares",category:"Contract Lifecycle Management",status:"Evaluating",description:"AI-powered contract analysis, management, and execution",useCases:["Contract Repository","AI Contract Analysis","Obligation Tracking","Renewal Management"],pricing:"Enterprise pricing - typically $30K-100K+ annually",integrations:["Salesforce","DocuSign","Microsoft 365"],aiCapabilities:"AI contract analysis and extraction",problemSolves:"Contract visibility, risk management, manual review, scattered contract storage",alternatives:["Ironclad","Concord"],contact:"Hannah Jordow - hjordow@linksquares.com"},
-  {name:"HubSpot CRM",vendor:"HubSpot",category:"CRM",status:"Evaluating",description:"All-in-one CRM, marketing, and sales platform - easier adoption alternative to Salesforce",useCases:["Contact Management","Deal Pipeline","Email Marketing","Marketing Automation","Lead Scoring"],pricing:"Free tier available; Starter $15-20/user/month; Pro $90+/user/month",integrations:["Gmail","Outlook","Salesforce","Various marketing tools"],problemSolves:"Unified sales and marketing platform, easier adoption than Salesforce",alternatives:["Salesforce Sales Cloud (more powerful, higher cost)"],contact:"HubSpot Sales",notes:"Alternative to Salesforce; lower cost with simpler user experience"},
-  {name:"Salesforce Commerce Cloud",vendor:"Salesforce",category:"E-commerce",status:"Evaluating",description:"Enterprise B2B/B2C e-commerce platform",useCases:["Online Parts Store","B2B Customer Portal","Quote-to-Order","Digital Commerce"],pricing:"2-3% of GMV + platform fees",integrations:["Native Salesforce","ERP systems","Payment gateways"],aiCapabilities:"Einstein for product recommendations",problemSolves:"Digital sales channels, customer self-service, online ordering, 24/7 parts availability",alternatives:["Shopify Plus","BigCommerce","SalesEdge Commerce"],contact:"Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"},
-  {name:"Snowflake",vendor:"Snowflake",category:"Data Platform",status:"Evaluating",description:"Cloud data platform for data warehousing and analytics",useCases:["Data Warehouse","Data Lake","Data Sharing","Analytics Foundation"],pricing:"$2-4/credit on-demand; $1.50-2.50 with annual commits; Storage $23-40/TB/month",integrations:["Salesforce","Tableau","Various BI tools","ETL tools"],problemSolves:"Data silos, scalability, single source of truth, cross-system analytics",alternatives:["Databricks","Google BigQuery","Oracle Cloud"],contact:"Cody Hudgens - cody.hudgins@snowflake.com",notes:"Typical spend: $500-2K/month (small teams) to $10K-50K+/month (enterprise). Consumption-based. Alternative: Oracle Cloud."},
-  {name:"Sigma Computing",vendor:"Sigma Computing",category:"Business Intelligence",status:"Evaluating",description:"Cloud-native BI with spreadsheet interface for business users",useCases:["Self-Service Analytics","Dashboards","Ad-hoc Analysis","Forecasting"],pricing:"Contact for pricing - typically $50-150/user/month",integrations:["Snowflake (primary)","Various cloud data warehouses"],problemSolves:"BI accessibility, Tableau learning curve, user adoption, forecasting capabilities",alternatives:["Tableau Desktop (more complex)"],notes:"Alternative to Tableau; lower learning curve; hands-on support; includes forecasting",contact:"Cameron Pierro - cameron@sigmacomputing.com"},
-  {name:"LOKAD",vendor:"LOKAD",category:"Supply Chain Analytics",status:"Evaluating",description:"Financial and quantitative analysis for supply chain optimization",useCases:["Asset Modeling","Pricing Analytics","Valuations","Demand Forecasting"],pricing:"$20K/month (~$240K/year)",integrations:["Various data sources"],problemSolves:"Supply chain optimization, pricing strategy, inventory management, asset valuation",contact:"Luciano Lisiotti - l.lisiotti@lokad.com"},
-  {name:"SalesEdge Commerce",vendor:"ILS",category:"E-commerce",status:"Evaluating",description:"ERP-integrated online stores by ILS for aviation parts",useCases:["Selling consumables","Expendables","PMA parts","New parts from distributorship","USM"],pricing:"Contact for pricing",integrations:["ILS","Early discussions with AvSight"],contact:"Bob McCabe - rmccabe@ilsmart.com"},
-  {name:"Mimecast",vendor:"Mimecast",category:"Cybersecurity - Email",status:"Evaluating",description:"Email security, archiving, and continuity platform - alternative to Proofpoint",useCases:["Email Security","Archiving","Continuity","URL Protection","Impersonation Protection"],pricing:"$3-7/user/month depending on bundle",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Email-based threats, data loss, email downtime",alternatives:["Proofpoint (preferred)","Barracuda"],contact:"Mimecast Sales"},
-  {name:"Coalfire Services",vendor:"RICOH",category:"Cybersecurity - Services",status:"Evaluating",description:"Platform-enabled cybersecurity services",useCases:["Compliance Assessment","Penetration Testing","Risk Advisory","Security Audits"],pricing:"Project-based - contact for pricing",notes:"Complements existing infrastructure and MSP",contact:"Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"},
-  {name:"Airflo.ai",vendor:"Airflo.ai",category:"E-commerce & Automation",status:"Evaluating",description:"AI-Powered Workflow Automation for Aerospace",useCases:["Sales emails","Inspection","Repairs","Invoice matching"],pricing:"Unknown",integrations:["AvSight"],problemSolves:"Manual aerospace workflows",notes:"New venture, partnership/influence capability; limited scope, one developer",contact:"Richard - richard@airflo.ai"},
-  {name:"DataManager",vendor:"DataManager Aero",category:"Asset & Lease Management",status:"Evaluating",description:"Leasing and asset management with automated lease billing and analytics",useCases:["Managing engine and APU assets","Marketed as LeaseWorks alternative"],pricing:"Unknown",integrations:["None - standalone with integrated features"],notes:"UX designed for users to perform tasks within single product",contact:"Ashley Stevens - astevens@datamanager.aero"},
-  {name:"Ricoh Managed Adoption Services",vendor:"RICOH",category:"Training & Adoption",status:"Evaluating",description:"Microsoft 365 training, security awareness, and simulated phishing campaigns managed by dedicated Service Adoption Specialist",useCases:["M365 Training","Security Awareness Training","Phishing Simulations","Custom Content Publishing","Learning Path Development"],pricing:"Minimum 50 seats required; contact for pricing",integrations:["Microsoft 365","Azure AD","Exchange Online","Teams"],problemSolves:"Technology adoption, employee productivity, security awareness gaps, phishing susceptibility",alternatives:["KnowBe4 (security only)","Udemy (generic learning)"],notes:"Requires corresponding Ricoh M365 support services. Includes monthly campaign analysis and roadmap development. Three tiers: Basic, Standard, Advanced",contact:"Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"},
-  {name:"KnowBe4",vendor:"KnowBe4",category:"Cybersecurity - Training",status:"Identified",description:"Security awareness training and simulated phishing platform",useCases:["Phishing Simulation","Security Training","Compliance Training","User Awareness","Reporting"],pricing:"$5-15/user/year depending on features and volume",integrations:["Microsoft 365","Google Workspace","Various email platforms"],problemSolves:"Phishing susceptibility, security awareness gaps, human error in security",alternatives:["Proofpoint Security Awareness","Cofense PhishMe"],contact:"KnowBe4 Sales"},
-  {name:"Proofpoint Email Protection",vendor:"Proofpoint",category:"Cybersecurity - Email",status:"Identified",description:"Advanced email security and threat protection",useCases:["Phishing Protection","Email Filtering","Malware Detection","Account Takeover Protection","DLP"],pricing:"Enterprise pricing - typically $3-8/user/month",integrations:["Microsoft 365","Google Workspace"],problemSolves:"Advanced phishing attacks, business email compromise, malware distribution",alternatives:["Mimecast","Barracuda"],contact:"Proofpoint Sales"},
-  {name:"Seamless.ai",vendor:"Seamless.ai",category:"Sales Intelligence",status:"Identified",description:"Lead generation and CRM data enrichment",useCases:["Sales Prospecting","Contact Discovery","CRM Data Clean-up","Lead Enrichment"],pricing:"$1K-60K/year depending on scale",integrations:["Salesforce","Various CRMs"],problemSolves:"Outdated contact data, lead generation, CRM data quality",alternatives:["ZoomInfo","Apollo.io"],notes:"Alternative options: ZoomInfo, Apollo.io. Scalable solution; concerns about large database size and costs",contact:"Joanna McKasty - joanna.mckasty@seamless.expert"},
-  {name:"Tipalti",vendor:"Tipalti",category:"Finance & Accounting",status:"Identified",description:"AP automation and supplier payment management",useCases:["Invoice Processing","AP Automation","Supplier Payments","Global Payments"],pricing:"Contact for pricing - typically starts at $149/month + per-payment fees",integrations:["Various ERP and accounting systems"],problemSolves:"Manual AP processes, payment errors, global payment complexity",contact:"Matthew Perrott - matthew.perrott@tipalti.com"},
-  {name:"Adaptive Planning",vendor:"Workday",category:"FP&A",status:"Identified",description:"Enterprise performance management and planning",useCases:["Financial Planning","Budgeting","Workforce Planning","Financial Close"],pricing:"Enterprise pricing - contact for quote",notes:"Not suitable: Through Revelwood; 1,000+ user minimums don't fit TrueAero size",contact:"Terry Kerans - Tkerans@Revelwood.com"},
-  {name:"Go Autonomous",vendor:"Go Autonomous",category:"E-commerce & Automation",status:"Identified",description:"AI-powered platform for automating commerce activities including document and email processing",useCases:["Automated email processing","RFQs","POs","ROs","Invoices"],pricing:"$100K+ per year",integrations:["ERP systems"],problemSolves:"Manual document processing",notes:"Must go all-in with Sales to leverage accounting automation; rejected due to scope requirements",contact:"Madalina Verdes - madalina@goautonomous.io"},
-  {name:"Oracle Cloud",vendor:"Oracle",category:"Data Platform",status:"Identified",description:"Cloud infrastructure with servers, storage, network, applications and services",useCases:["Looking at as Snowflake alternative"],pricing:"Unknown",notes:"Oracle products not natively integrated with Salesforce - more admin and engineering work required",contact:"Carly Schimberg - carly.schimberg@oracle.com"},
-  {name:"Creatio",vendor:"Studio Creatio",category:"Low-Code Platform",status:"Identified",description:"AI driven low-code platforms for citizen development",useCases:["Process automation","Custom app development"],pricing:"Contact for pricing",contact:"N/A"}
+  {
+    name: "Microsoft 365",
+    vendor: "Microsoft",
+    category: "Productivity & Collaboration",
+    status: "Active - Core",
+    description: "Enterprise productivity suite including Office apps, Teams, SharePoint, OneDrive, and Exchange",
+    useCases: ["Email & Calendar", "Document Creation", "Team Collaboration", "File Storage", "Video Conferencing"],
+    pricing: "$6-57/user/month (varies by plan)",
+    integrations: ["All enterprise tools", "Salesforce", "Zoom", "Various APIs"],
+    aiCapabilities: "Copilot AI: $30/user/month add-on",
+    contact: "Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",
+    notes: "Includes Azure infrastructure access"
+  },
+  {
+    name: "LeaseWorks Aeris",
+    vendor: "LeaseWorks",
+    category: "Asset & Lease Management",
+    status: "Active - Core",
+    description: "Aviation lease and asset management platform - core lease management product",
+    useCases: ["Engine & Aircraft Leasing", "Contract Management", "Lease Billing", "Asset Tracking", "Financial Calculations"],
+    pricing: "Enterprise license - contact for pricing",
+    integrations: ["Limited - primarily standalone"],
+    contact: "Diane Heron - diane.heron@portside.co",
+    notes: "Part of LeaseWorks suite alongside AerisMATCH"
+  },
+  {
+    name: "LeaseWorks AerisMATCH",
+    vendor: "LeaseWorks",
+    category: "CRM",
+    status: "Active - Core",
+    description: "Aviation-specific CRM product within the LeaseWorks suite for lease and sales opportunity management",
+    useCases: ["Opportunity Management", "Customer Relationships", "Sales Pipeline", "Lease Opportunities"],
+    pricing: "Enterprise license - contact for pricing",
+    integrations: ["LeaseWorks Aeris"],
+    contact: "Wendy Campanella - wendy.campanella@portside.co",
+    notes: "CRM component of LeaseWorks platform"
+  },
+  {
+    name: "AvSight",
+    vendor: "AvSight",
+    category: "ERP - Aviation",
+    status: "Active - Core",
+    description: "Aviation-specific ERP for inventory, maintenance, and operations",
+    useCases: ["Parts Inventory", "Work Orders", "Sales Orders", "Purchase Orders", "MRO Operations"],
+    pricing: "Enterprise license - contact for pricing",
+    integrations: ["Accounting Seed", "Various APIs", "Heroku (required for Aeroxchange buyer catalogs)"],
+    aiCapabilities: "AvSight Intelligence: AI-powered insights, Quote Agent, Email-to-Quote automation (separate activation, consumption-based billing)",
+    contact: "William Valley - wvalley@inscaletech.com",
+    notes: "Could potentially facilitate some Accounting Seed ERP functions. AvSight Intelligence includes Account Insights, Part Master Insights, and automated quoting capabilities."
+  },
+  {
+    name: "Accounting Seed (Core)",
+    vendor: "Accounting Seed",
+    category: "Finance & Accounting",
+    status: "Active - Core",
+    description: "Salesforce-native accounting and financial management - core GL/AP/AR functionality",
+    useCases: ["General Ledger", "AP/AR", "Financial Reporting", "Multi-entity Accounting"],
+    pricing: "Per user/month on Salesforce - contact for pricing",
+    integrations: ["Native Salesforce", "AvSight", "Banking APIs", "AutoFX (currency conversion)", "Sola Portal (payment processing & AR automation)"],
+    contact: "Accounting Seed Support",
+    notes: "Core financial product - see also Accounting Seed ERP. AutoFX handles automated currency conversion. Sola Portal (formerly Cardknox) enables ACH & CC payment acceptance with automated deposit reconciliation."
+  },
+  {
+    name: "Accounting Seed ERP",
+    vendor: "Accounting Seed",
+    category: "ERP - Finance",
+    status: "Active - Core",
+    description: "ERP add-on to Accounting Seed providing extended enterprise resource planning capabilities",
+    useCases: ["Advanced Financial Management", "Project Accounting", "Resource Planning", "Advanced Reporting"],
+    pricing: "Add-on to Accounting Seed - contact for pricing",
+    integrations: ["Native Salesforce", "Accounting Seed Core"],
+    contact: "Accounting Seed Support",
+    notes: "Actively used ERP add-on; could be facilitated via AvSight (historical discussion)"
+  },
+  {
+    name: "Own",
+    vendor: "Own Company",
+    category: "Data Backup & Recovery",
+    status: "Active - Core",
+    description: "Salesforce data backup and recovery solution",
+    useCases: ["Automated Backups", "Data Recovery", "Compliance", "Data Archiving"],
+    pricing: "Based on data volume - contact for pricing",
+    integrations: ["Native Salesforce"],
+    contact: "Self-service - reach out to Innovation Lab or Own Support directly"
+  },
+  {
+    name: "Tableau Desktop",
+    vendor: "Salesforce/Tableau",
+    category: "Business Intelligence",
+    status: "Active - Core",
+    description: "Data visualization and business intelligence platform",
+    useCases: ["Custom Dashboards", "Data Analysis", "Financial Reports", "KPI Tracking"],
+    pricing: "$75-250/user/month depending on edition",
+    integrations: ["Multiple data sources", "Salesforce", "Excel", "Databases"],
+    contact: "Victoria Henderson - vhenderson@salesforce.com"
+  },
+  {
+    name: "Zoom",
+    vendor: "Zoom",
+    category: "Communication & Video",
+    status: "Active - Core",
+    description: "Video conferencing, webinars, and communication platform",
+    useCases: ["Video Meetings", "Webinars", "Phone System", "Team Chat"],
+    pricing: "$15-20/user/month for business plans",
+    integrations: ["Microsoft 365", "Salesforce", "Calendar systems"],
+    aiCapabilities: "AI Companion included with paid plans: Meeting summaries, action items, email composition, chat threading",
+    contact: "Jake Schell - jake.schell@zoom.us",
+    notes: "AI Companion features included with paid Zoom plans"
+  },
+  {
+    name: "Adobe Acrobat",
+    vendor: "Adobe",
+    category: "Document Management",
+    status: "Active - Core",
+    description: "PDF creation, editing, and management tool",
+    useCases: ["PDF Creation", "Document Editing", "Form Filling", "Digital Signatures", "Document Collaboration"],
+    pricing: "Mix of perpetual licenses and Acrobat DC subscription ($12.99-29.99/user/month)",
+    integrations: ["Microsoft Office", "Various document systems"],
+    contact: "Adobe Account Team",
+    notes: "Currently distributed across legacy license and cloud versions"
+  },
+  {
+    name: "Box",
+    vendor: "Box.com",
+    category: "Document Management & Storage",
+    status: "Active - Core",
+    description: "Enterprise content management and file sharing platform for leasing and records management",
+    useCases: ["Leasing Documents", "Records Management", "Secure File Sharing", "Document Collaboration", "External Sharing"],
+    pricing: "Enterprise pricing - typically $15-35/user/month",
+    integrations: ["Microsoft 365", "Salesforce", "Various enterprise apps"],
+    contact: "Olga Adler - oadler@box.com",
+    notes: "Managed at enterprise level; better handling, sharing, and limitations than SharePoint for leasing/records"
+  },
+  {
+    name: "Wix",
+    vendor: "Wix",
+    category: "Website & Digital Presence",
+    status: "Active - Core",
+    description: "Website building and hosting platform for TrueAero's web presence",
+    useCases: ["Company Website", "Marketing Pages", "Content Management", "SEO"],
+    pricing: "Business plans $17-159/month depending on features",
+    integrations: ["Various marketing tools", "Analytics", "Email marketing"],
+    contact: "Wix Support"
+  },
+  {
+    name: "Microsoft Azure",
+    vendor: "Microsoft",
+    category: "Cloud Infrastructure",
+    status: "Active - Core",
+    description: "Cloud computing platform and infrastructure services (accessed via Microsoft 365)",
+    useCases: ["Cloud Storage", "Virtual Machines", "App Hosting", "Database Services", "Identity Management"],
+    pricing: "Consumption-based - varies by service",
+    integrations: ["Microsoft 365", "Native Microsoft ecosystem"],
+    contact: "Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)",
+    notes: "Infrastructure accessed through Microsoft 365 subscription"
+  },
+  {
+    name: "Mulesoft Anypoint Platform",
+    vendor: "Salesforce/Mulesoft",
+    category: "Integration & Automation",
+    status: "Active - Core",
+    description: "iPaaS and intelligent document processing platform",
+    useCases: ["System Integration", "API Management", "IDP - Invoice Processing", "KYC Automation", "PO Processing"],
+    pricing: "$50K+/year (3-year discount available)",
+    integrations: ["Salesforce native", "Various enterprise systems"],
+    aiCapabilities: "Automated document extraction and processing",
+    problemSolves: "Manual document processing, system integration, data flow automation",
+    notes: "Deep discount for 3 years + no implementation cost",
+    contact: "Ava Larson - ava.larson@salesforce.com"
+  },
+  {
+    name: "Zenkraft",
+    vendor: "Zenkraft (by Bringg)",
+    category: "Logistics & Delivery",
+    status: "Active - Core",
+    description: "Salesforce Commerce Cloud integration with Bringg for delivery management and logistics",
+    useCases: ["Last-mile Delivery", "Order Fulfillment", "Route Optimization", "Real-time Tracking", "Delivery Notifications"],
+    pricing: "Contact for pricing",
+    integrations: ["Salesforce Commerce Cloud", "Bringg platform"],
+    problemSolves: "Delivery logistics, customer delivery experience, order tracking, fulfillment operations",
+    contact: "Self-service - reach out to Innovation Lab or Zenkraft Support directly",
+    notes: "Connects Salesforce Commerce Cloud with Bringg's delivery orchestration platform"
+  },
+  {
+    name: "Otter.ai",
+    vendor: "Otter.ai",
+    category: "Productivity & Collaboration",
+    status: "Active - Fringe",
+    description: "AI-powered meeting transcription and notes",
+    useCases: ["Meeting Transcription", "Action Items", "Searchable Notes"],
+    pricing: "Free tier available; Pro $10-17/user/month",
+    integrations: ["Zoom", "Microsoft Teams", "Google Meet"],
+    aiCapabilities: "Real-time transcription, AI summaries",
+    contact: "Self-service"
+  },
+  {
+    name: "Loom",
+    vendor: "Loom (Atlassian)",
+    category: "Communication & Video",
+    status: "Active - Fringe",
+    description: "Quick video messaging and screen recording",
+    useCases: ["Training Videos", "Async Communication", "Screen Sharing", "Product Demos"],
+    pricing: "Free tier; Business $12.50/user/month",
+    integrations: ["Slack", "Gmail", "Various embeds"],
+    contact: "Self-service"
+  },
+  {
+    name: "Scribe",
+    vendor: "Scribe",
+    category: "Knowledge Management",
+    status: "Active - Fringe",
+    description: "Automatically generates step-by-step guides from workflows",
+    useCases: ["Process Documentation", "Training Materials", "SOPs", "Knowledge Base"],
+    pricing: "Free tier; Pro $12-29/user/month",
+    integrations: ["URL embedding", "Various platforms"],
+    contact: "UPDATE CONTACT INFO"
+  },
+  {
+    name: "Lucid",
+    vendor: "Lucid Software",
+    category: "Productivity & Collaboration",
+    status: "Active - Fringe",
+    description: "Visual collaboration suite (Lucidchart, Lucidspark)",
+    useCases: ["Flowcharts", "Process Mapping", "Org Charts", "Brainstorming"],
+    pricing: "$7.95-27/user/month depending on plan",
+    integrations: ["Microsoft 365", "Google Workspace", "Salesforce"],
+    contact: "Self-service"
+  },
+  {
+    name: "Calendly",
+    vendor: "Calendly",
+    category: "Scheduling & Productivity",
+    status: "Active - Fringe",
+    description: "Automated scheduling tool for meetings and appointments",
+    useCases: ["Meeting Scheduling", "Calendar Management", "External Appointments", "Booking Pages"],
+    pricing: "Free tier; Professional $10-16/user/month",
+    integrations: ["Zoom", "Microsoft Teams", "Google Calendar", "Outlook"],
+    contact: "Self-service",
+    notes: "Alternative to Zoom scheduler; used by many team members"
+  },
+  {
+    name: "Salesforce Agentforce",
+    vendor: "Salesforce",
+    category: "AI Agents",
+    status: "Emerging",
+    description: "Autonomous AI agents that work within Salesforce",
+    useCases: ["Customer Service Automation", "Sales Assistance", "Data Entry", "Process Automation"],
+    pricing: "$125/user/month (add-on to Enterprise+) or $500/100K credits",
+    integrations: ["Native Salesforce platform"],
+    aiCapabilities: "Autonomous AI agents with reasoning and actions",
+    problemSolves: "Process automation, scalability, 24/7 operations, repetitive task elimination",
+    notes: "Recently announced; $2 per conversation model also available",
+    contact: "Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"
+  },
+  {
+    name: "DocuSign",
+    vendor: "DocuSign",
+    category: "Digital Signatures & CLM",
+    status: "Recommended",
+    description: "Industry-leading eSignature and agreement automation",
+    useCases: ["Contract Signing", "Lease Agreements", "Vendor Agreements", "Compliance Documents"],
+    pricing: "$10-40/user/month; Enterprise custom",
+    integrations: ["Salesforce", "Microsoft 365", "Various CRMs and ERPs"],
+    problemSolves: "Manual signature collection, contract turnaround time, paper-based processes",
+    alternatives: ["Adobe Sign", "PandaDoc"],
+    contact: "UPDATE CONTACT INFO",
+    notes: "Personal: $10/mo (5 envelopes); Standard: $25/mo (100 envelopes/yr); Business Pro: $40/mo"
+  },
+  {
+    name: "Salesforce Sales Cloud",
+    vendor: "Salesforce",
+    category: "CRM",
+    status: "Recommended",
+    description: "Enterprise CRM platform for sales process management",
+    useCases: ["Lead Management", "Opportunity Tracking", "Account Management", "Sales Analytics", "Forecasting"],
+    pricing: "$25/user/mo (Starter, up to 10 users); $100-330/user/mo (Pro/Enterprise/Unlimited)",
+    integrations: ["Native Salesforce ecosystem", "Email", "Calendar", "Phone systems"],
+    aiCapabilities: "Agentforce AI: +$125/user/month for Enterprise+",
+    problemSolves: "Sales process visibility, lead tracking, customer data management, sales forecasting",
+    alternatives: ["HubSpot CRM (easier adoption, lower cost)"],
+    contact: "Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",
+    notes: "August 2025: 6% price increase announced. Consider HubSpot as simpler alternative."
+  },
+  {
+    name: "Salesforce Marketing Cloud",
+    vendor: "Salesforce",
+    category: "Marketing Automation",
+    status: "Recommended",
+    description: "Enterprise marketing automation and customer journey platform",
+    useCases: ["Email Campaigns", "Customer Journeys", "Personalization", "Marketing Analytics"],
+    pricing: "$1,250-3,250/org/month (Growth/Advanced editions)",
+    integrations: ["Native Salesforce", "Sales Cloud", "Service Cloud"],
+    aiCapabilities: "Einstein AI for personalization and optimization",
+    problemSolves: "Marketing automation, customer engagement, campaign tracking",
+    contact: "Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)",
+    notes: "Priced per organization, not per user"
+  },
+  {
+    name: "Microsoft Copilot",
+    vendor: "Microsoft",
+    category: "AI & Productivity",
+    status: "Recommended",
+    description: "AI assistant integrated across Microsoft 365",
+    useCases: ["Document Writing", "Email Drafting", "Data Analysis", "Meeting Summaries", "Code Assistance"],
+    pricing: "$30/user/month (add-on to M365)",
+    integrations: ["Native Microsoft 365"],
+    aiCapabilities: "GPT-4 based AI across all Office apps",
+    problemSolves: "Productivity enhancement, content creation, data insights, time savings",
+    contact: "Resold through RICOH - Sonya McKinzie (Sonya.McKinzie@ricoh-usa.com)"
+  },
+  {
+    name: "LinkSquares",
+    vendor: "LinkSquares",
+    category: "Contract Lifecycle Management",
+    status: "Evaluating",
+    description: "AI-powered contract analysis, management, and execution",
+    useCases: ["Contract Repository", "AI Contract Analysis", "Obligation Tracking", "Renewal Management"],
+    pricing: "Enterprise pricing - typically $30K-100K+ annually",
+    integrations: ["Salesforce", "DocuSign", "Microsoft 365"],
+    aiCapabilities: "AI contract analysis and extraction",
+    problemSolves: "Contract visibility, risk management, manual review, scattered contract storage",
+    alternatives: ["Ironclad", "Concord"],
+    contact: "Hannah Jordow - hjordow@linksquares.com"
+  },
+  {
+    name: "HubSpot CRM",
+    vendor: "HubSpot",
+    category: "CRM",
+    status: "Evaluating",
+    description: "All-in-one CRM, marketing, and sales platform - easier adoption alternative to Salesforce",
+    useCases: ["Contact Management", "Deal Pipeline", "Email Marketing", "Marketing Automation", "Lead Scoring"],
+    pricing: "Free tier available; Starter $15-20/user/month; Pro $90+/user/month",
+    integrations: ["Gmail", "Outlook", "Salesforce", "Various marketing tools"],
+    problemSolves: "Unified sales and marketing platform, easier adoption than Salesforce",
+    alternatives: ["Salesforce Sales Cloud (more powerful, higher cost)"],
+    contact: "HubSpot Sales",
+    notes: "Alternative to Salesforce; lower cost with simpler user experience"
+  },
+  {
+    name: "Salesforce Commerce Cloud",
+    vendor: "Salesforce",
+    category: "E-commerce",
+    status: "Evaluating",
+    description: "Enterprise B2B/B2C e-commerce platform",
+    useCases: ["Online Parts Store", "B2B Customer Portal", "Quote-to-Order", "Digital Commerce"],
+    pricing: "2-3% of GMV + platform fees",
+    integrations: ["Native Salesforce", "ERP systems", "Payment gateways"],
+    aiCapabilities: "Einstein for product recommendations",
+    problemSolves: "Digital sales channels, customer self-service, online ordering, 24/7 parts availability",
+    alternatives: ["Shopify Plus", "BigCommerce", "SalesEdge Commerce"],
+    contact: "Amber (Beilstein) Andino (abeilstein@salesforce.com) and Katie Feeley (kfeeley@salesforce.com)"
+  },
+  {
+    name: "Snowflake",
+    vendor: "Snowflake",
+    category: "Data Platform",
+    status: "Evaluating",
+    description: "Cloud data platform for data warehousing and analytics",
+    useCases: ["Data Warehouse", "Data Lake", "Data Sharing", "Analytics Foundation"],
+    pricing: "$2-4/credit on-demand; $1.50-2.50 with annual commits; Storage $23-40/TB/month",
+    integrations: ["Salesforce", "Tableau", "Various BI tools", "ETL tools"],
+    problemSolves: "Data silos, scalability, single source of truth, cross-system analytics",
+    alternatives: ["Databricks", "Google BigQuery", "Oracle Cloud"],
+    contact: "Cody Hudgens - cody.hudgins@snowflake.com",
+    notes: "Typical spend: $500-2K/month (small teams) to $10K-50K+/month (enterprise). Consumption-based. Alternative: Oracle Cloud."
+  },
+  {
+    name: "Sigma Computing",
+    vendor: "Sigma Computing",
+    category: "Business Intelligence",
+    status: "Evaluating",
+    description: "Cloud-native BI with spreadsheet interface for business users",
+    useCases: ["Self-Service Analytics", "Dashboards", "Ad-hoc Analysis", "Forecasting"],
+    pricing: "Contact for pricing - typically $50-150/user/month",
+    integrations: ["Snowflake (primary)", "Various cloud data warehouses"],
+    problemSolves: "BI accessibility, Tableau learning curve, user adoption, forecasting capabilities",
+    alternatives: ["Tableau Desktop (more complex)"],
+    notes: "Alternative to Tableau; lower learning curve; hands-on support; includes forecasting",
+    contact: "Cameron Pierro - cameron@sigmacomputing.com"
+  },
+  {
+    name: "LOKAD",
+    vendor: "LOKAD",
+    category: "Supply Chain Analytics",
+    status: "Evaluating",
+    description: "Financial and quantitative analysis for supply chain optimization",
+    useCases: ["Asset Modeling", "Pricing Analytics", "Valuations", "Demand Forecasting"],
+    pricing: "$20K/month (~$240K/year)",
+    integrations: ["Various data sources"],
+    problemSolves: "Supply chain optimization, pricing strategy, inventory management, asset valuation",
+    contact: "Luciano Lisiotti - l.lisiotti@lokad.com"
+  },
+  {
+    name: "SalesEdge Commerce",
+    vendor: "ILS",
+    category: "E-commerce",
+    status: "Evaluating",
+    description: "ERP-integrated online stores by ILS for aviation parts",
+    useCases: ["Selling consumables", "Expendables", "PMA parts", "New parts from distributorship", "USM"],
+    pricing: "Contact for pricing",
+    integrations: ["ILS", "Early discussions with AvSight"],
+    contact: "Bob McCabe - rmccabe@ilsmart.com"
+  },
+  {
+    name: "Mimecast",
+    vendor: "Mimecast",
+    category: "Cybersecurity - Email",
+    status: "Evaluating",
+    description: "Email security, archiving, and continuity platform - alternative to Proofpoint",
+    useCases: ["Email Security", "Archiving", "Continuity", "URL Protection", "Impersonation Protection"],
+    pricing: "$3-7/user/month depending on bundle",
+    integrations: ["Microsoft 365", "Google Workspace"],
+    problemSolves: "Email-based threats, data loss, email downtime",
+    alternatives: ["Proofpoint (preferred)", "Barracuda"],
+    contact: "Mimecast Sales"
+  },
+  {
+    name: "Coalfire Services",
+    vendor: "RICOH",
+    category: "Cybersecurity - Services",
+    status: "Evaluating",
+    description: "Platform-enabled cybersecurity services",
+    useCases: ["Compliance Assessment", "Penetration Testing", "Risk Advisory", "Security Audits"],
+    pricing: "Project-based - contact for pricing",
+    notes: "Complements existing infrastructure and MSP",
+    contact: "Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"
+  },
+  {
+    name: "Airflo.ai",
+    vendor: "Airflo.ai",
+    category: "E-commerce & Automation",
+    status: "Evaluating",
+    description: "AI-Powered Workflow Automation for Aerospace",
+    useCases: ["Sales emails", "Inspection", "Repairs", "Invoice matching"],
+    pricing: "Unknown",
+    integrations: ["AvSight"],
+    problemSolves: "Manual aerospace workflows",
+    notes: "New venture, partnership/influence capability; limited scope, one developer",
+    contact: "Richard - richard@airflo.ai"
+  },
+  {
+    name: "DataManager",
+    vendor: "DataManager Aero",
+    category: "Asset & Lease Management",
+    status: "Evaluating",
+    description: "Leasing and asset management with automated lease billing and analytics",
+    useCases: ["Managing engine and APU assets", "Marketed as LeaseWorks alternative"],
+    pricing: "Unknown",
+    integrations: ["None - standalone with integrated features"],
+    notes: "UX designed for users to perform tasks within single product",
+    contact: "Ashley Stevens - astevens@datamanager.aero"
+  },
+  {
+    name: "Ricoh Managed Adoption Services",
+    vendor: "RICOH",
+    category: "Training & Adoption",
+    status: "Evaluating",
+    description: "Microsoft 365 training, security awareness, and simulated phishing campaigns managed by dedicated Service Adoption Specialist",
+    useCases: ["M365 Training", "Security Awareness Training", "Phishing Simulations", "Custom Content Publishing", "Learning Path Development"],
+    pricing: "Minimum 50 seats required; contact for pricing",
+    integrations: ["Microsoft 365", "Azure AD", "Exchange Online", "Teams"],
+    problemSolves: "Technology adoption, employee productivity, security awareness gaps, phishing susceptibility",
+    alternatives: ["KnowBe4 (security only)", "Udemy (generic learning)"],
+    notes: "Requires corresponding Ricoh M365 support services. Includes monthly campaign analysis and roadmap development. Three tiers: Basic, Standard, Advanced",
+    contact: "Sonya McKinzie - Sonya.McKinzie@ricoh-usa.com"
+  },
+  {
+    name: "QDocs",
+    vendor: "QDocs",
+    category: "Records Management",
+    status: "Identified",
+    description: "Document Management System integrated with Microsoft Office for organizing, sharing and accessing files",
+    useCases: ["Document Organization", "File Sharing", "Records Management", "Version Control", "Multi-format File Management"],
+    pricing: "Contact for pricing",
+    integrations: ["Microsoft Office", "Word", "Excel", "Access", "PowerPoint", "Outlook"],
+    problemSolves: "File duplication, document organization, information sharing inefficiencies",
+    contact: "UPDATE CONTACT INFO",
+    notes: "Handles wide range of file types including Office documents, emails, attachments, and image files"
+  },
+  {
+    name: "ProvenAir",
+    vendor: "ProvenAir Technologies",
+    category: "Records Management",
+    status: "Identified",
+    description: "AI-driven aircraft records management platform with automated back-to-birth trace analysis for life-limited parts",
+    useCases: ["Back-to-Birth Trace Analysis", "Life-Limited Parts Tracking", "Maintenance Records Digitization", "Compliance Documentation", "Component History Tracking"],
+    pricing: "Contact for pricing",
+    integrations: ["Standalone platform"],
+    aiCapabilities: "AI-driven verification, automated document categorization, proprietary algorithms for LLP trace analysis",
+    problemSolves: "Manual trace analysis, human error in records review, compliance verification, costly LLP replacements",
+    contact: "UPDATE CONTACT INFO",
+    notes: "Reduces trace analysis time from weeks to hours. Supports engines, landing gears, and APUs. Used by lessors, airlines, MROs, and suppliers."
+  },
+  {
+    name: "Aerlytix",
+    vendor: "Aerlytix",
+    category: "Data Analysis",
+    status: "Identified",
+    description: "Aviation finance analytics platform providing maintenance forecasting, valuations, portfolio management, and credit risk analysis",
+    useCases: ["Maintenance Forecasting", "Aircraft Valuations", "Portfolio Management", "Credit Risk Analysis", "Financial Projections", "Pricing Analytics"],
+    pricing: "Contact for pricing",
+    integrations: ["API-based integration with leading aviation platforms"],
+    aiCapabilities: "Advanced analytics, sensitivity analysis, scenario modeling across thousands of scenarios",
+    problemSolves: "Financial forecasting, investment decision-making, maintenance cost projections, fleet optimization",
+    contact: "UPDATE CONTACT INFO",
+    notes: "Serves banks, lenders, owners, and investors. Features include rack-and-stack comparison, goal-seek analysis, and unlimited scenario branching."
+  },
+  {
+    name: "KnowBe4",
+    vendor: "KnowBe4",
+    category: "Cybersecurity - Training",
+    status: "Identified",
+    description: "Security awareness training and simulated phishing platform",
+    useCases: ["Phishing Simulation", "Security Training", "Compliance Training", "User Awareness", "Reporting"],
+    pricing: "$5-15/user/year depending on features and volume",
+    integrations: ["Microsoft 365", "Google Workspace", "Various email platforms"],
+    problemSolves: "Phishing susceptibility, security awareness gaps, human error in security",
+    alternatives: ["Proofpoint Security Awareness", "Cofense PhishMe"],
+    contact: "KnowBe4 Sales"
+  },
+  {
+    name: "Proofpoint Email Protection",
+    vendor: "Proofpoint",
+    category: "Cybersecurity - Email",
+    status: "Identified",
+    description: "Advanced email security and threat protection",
+    useCases: ["Phishing Protection", "Email Filtering", "Malware Detection", "Account Takeover Protection", "DLP"],
+    pricing: "Enterprise pricing - typically $3-8/user/month",
+    integrations: ["Microsoft 365", "Google Workspace"],
+    problemSolves: "Advanced phishing attacks, business email compromise, malware distribution",
+    alternatives: ["Mimecast", "Barracuda"],
+    contact: "Proofpoint Sales"
+  },
+  {
+    name: "Seamless.ai",
+    vendor: "Seamless.ai",
+    category: "Sales Intelligence",
+    status: "Identified",
+    description: "Lead generation and CRM data enrichment",
+    useCases: ["Sales Prospecting", "Contact Discovery", "CRM Data Clean-up", "Lead Enrichment"],
+    pricing: "$1K-60K/year depending on scale",
+    integrations: ["Salesforce", "Various CRMs"],
+    problemSolves: "Outdated contact data, lead generation, CRM data quality",
+    alternatives: ["ZoomInfo", "Apollo.io"],
+    notes: "Alternative options: ZoomInfo, Apollo.io. Scalable solution; concerns about large database size and costs",
+    contact: "Joanna McKasty - joanna.mckasty@seamless.expert"
+  },
+  {
+    name: "Tipalti",
+    vendor: "Tipalti",
+    category: "Finance & Accounting",
+    status: "Identified",
+    description: "AP automation and supplier payment management",
+    useCases: ["Invoice Processing", "AP Automation", "Supplier Payments", "Global Payments"],
+    pricing: "Contact for pricing - typically starts at $149/month + per-payment fees",
+    integrations: ["Various ERP and accounting systems"],
+    problemSolves: "Manual AP processes, payment errors, global payment complexity",
+    contact: "Matthew Perrott - matthew.perrott@tipalti.com"
+  },
+  {
+    name: "Adaptive Planning",
+    vendor: "Workday",
+    category: "FP&A",
+    status: "Identified",
+    description: "Enterprise performance management and planning",
+    useCases: ["Financial Planning", "Budgeting", "Workforce Planning", "Financial Close"],
+    pricing: "Enterprise pricing - contact for quote",
+    notes: "Not suitable: Through Revelwood; 1,000+ user minimums don't fit TrueAero size",
+    contact: "Terry Kerans - Tkerans@Revelwood.com"
+  },
+  {
+    name: "Go Autonomous",
+    vendor: "Go Autonomous",
+    category: "E-commerce & Automation",
+    status: "Identified",
+    description: "AI-powered platform for automating commerce activities including document and email processing",
+    useCases: ["Automated email processing", "RFQs", "POs", "ROs", "Invoices"],
+    pricing: "$100K+ per year",
+    integrations: ["ERP systems"],
+    problemSolves: "Manual document processing",
+    notes: "Must go all-in with Sales to leverage accounting automation; rejected due to scope requirements",
+    contact: "Madalina Verdes - madalina@goautonomous.io"
+  },
+  {
+    name: "Oracle Cloud",
+    vendor: "Oracle",
+    category: "Data Platform",
+    status: "Identified",
+    description: "Cloud infrastructure with servers, storage, network, applications and services",
+    useCases: ["Looking at as Snowflake alternative"],
+    pricing: "Unknown",
+    notes: "Oracle products not natively integrated with Salesforce - more admin and engineering work required",
+    contact: "Carly Schimberg - carly.schimberg@oracle.com"
+  },
+  {
+    name: "Creatio",
+    vendor: "Studio Creatio",
+    category: "Low-Code Platform",
+    status: "Identified",
+    description: "AI driven low-code platforms for citizen development",
+    useCases: ["Process automation", "Custom app development"],
+    pricing: "Contact for pricing",
+    contact: "N/A"
+  }
 ];
 
-const statusOrder = {"Active - Core":1,"Active - Fringe":2,"Emerging":3,"Recommended":4,"Evaluating":5,"Identified":6,"Rejected":7};
-
-const getStatusClass = (status) => {
-  const map = {"Active - Core":"b-core","Active - Fringe":"b-fringe","Emerging":"b-emerg","Recommended":"b-rec","Evaluating":"b-eval","Identified":"b-id","Rejected":"b-rej"};
-  return map[status] || "b-id";
+// Status ordering for sorting
+const statusOrder = {
+  'Active - Core': 1,
+  'Active - Fringe': 2,
+  'Emerging': 3,
+  'Recommended': 4,
+  'Evaluating': 5,
+  'Identified': 6
 };
 
-let sortedTech = [...technologies].sort((a,b) => {
-  const sc = statusOrder[a.status] - statusOrder[b.status];
-  return sc !== 0 ? sc : a.name.localeCompare(b.name);
+// Initialize page
+document.addEventListener('DOMContentLoaded', function() {
+  populateFilters();
+  renderTechnologies();
+  updateStats();
 });
 
-function init() {
-  const cats = [...new Set(technologies.map(t => t.category))].sort();
-  const catFilter = document.getElementById('category-filter');
-  cats.forEach(c => {
-    const opt = document.createElement('option');
-    opt.value = c;
-    opt.textContent = c;
-    catFilter.appendChild(opt);
+function populateFilters() {
+  const categories = [...new Set(technologies.map(t => t.category))].sort();
+  const statuses = [...new Set(technologies.map(t => t.status))].sort((a, b) => {
+    return (statusOrder[a] || 999) - (statusOrder[b] || 999);
   });
   
-  document.getElementById('total-count').textContent = technologies.length;
-  document.getElementById('tech-count').textContent = technologies.length;
+  const categoryFilter = document.getElementById('categoryFilter');
+  const statusFilter = document.getElementById('statusFilter');
   
-  const theme = localStorage.getItem('theme') || 'light';
-  if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  categories.forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    categoryFilter.appendChild(option);
+  });
   
-  filterTechnologies();
+  statuses.forEach(status => {
+    const option = document.createElement('option');
+    option.value = status;
+    option.textContent = status;
+    statusFilter.appendChild(option);
+  });
 }
 
 function filterTechnologies() {
-  const search = document.getElementById('search').value.toLowerCase();
-  const cat = document.getElementById('category-filter').value;
-  const status = document.getElementById('status-filter').value;
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const categoryFilter = document.getElementById('categoryFilter').value;
+  const statusFilter = document.getElementById('statusFilter').value;
   
-  const filtered = sortedTech.filter(t => {
-    const matchSearch = !search || 
-      t.name.toLowerCase().includes(search) ||
-      t.vendor.toLowerCase().includes(search) ||
-      t.description.toLowerCase().includes(search) ||
-      (t.useCases && t.useCases.some(u => u.toLowerCase().includes(search))) ||
-      (t.problemSolves && t.problemSolves.toLowerCase().includes(search));
-    const matchCat = !cat || t.category === cat;
-    const matchStatus = !status || t.status === status;
-    return matchSearch && matchCat && matchStatus;
+  const filtered = technologies.filter(tech => {
+    const matchesSearch = !searchTerm || 
+      tech.name.toLowerCase().includes(searchTerm) ||
+      tech.vendor.toLowerCase().includes(searchTerm) ||
+      tech.description.toLowerCase().includes(searchTerm) ||
+      (tech.useCases && tech.useCases.some(uc => uc.toLowerCase().includes(searchTerm)));
+    
+    const matchesCategory = categoryFilter === 'All' || tech.category === categoryFilter;
+    const matchesStatus = statusFilter === 'All' || tech.status === statusFilter;
+    
+    return matchesSearch && matchesCategory && matchesStatus;
   });
   
-  document.getElementById('showing-count').textContent = filtered.length;
   renderTechnologies(filtered);
+  updateStats(filtered.length);
 }
 
-function renderTechnologies(techs) {
-  const list = document.getElementById('tech-list');
+function renderTechnologies(techList = technologies) {
+  const sorted = [...techList].sort((a, b) => {
+    const statusDiff = (statusOrder[a.status] || 999) - (statusOrder[b.status] || 999);
+    if (statusDiff !== 0) return statusDiff;
+    return a.name.localeCompare(b.name);
+  });
   
-  if (techs.length === 0) {
-    list.innerHTML = '<div class="no-results"><p>No technologies found matching your criteria.</p><p style="font-size:14px;margin-top:8px;">Try adjusting your search or filters.</p></div>';
-    return;
-  }
+  const grid = document.getElementById('techGrid');
+  grid.innerHTML = '';
   
-  list.innerHTML = techs.map((t, i) => `
-    <div class="card" onclick="toggleDetails(${i})">
-      <div class="card-header">
-        <div class="title-row">
-          <h3>${t.name}</h3>
-          <span class="badge ${getStatusClass(t.status)}">${t.status}</span>
+  sorted.forEach((tech, index) => {
+    const card = createTechCard(tech, index);
+    grid.appendChild(card);
+  });
+}
+
+function createTechCard(tech, index) {
+  const card = document.createElement('div');
+  card.className = 'tech-card';
+  
+  const statusColor = getStatusColor(tech.status);
+  
+  card.innerHTML = `
+    <div class="tech-card-header" onclick="toggleCard(${index})">
+      <div class="tech-info">
+        <div class="tech-name">${tech.name}</div>
+        <div class="tech-vendor">${tech.vendor}</div>
+        <div class="tech-meta">
+          <span class="badge badge-status" style="background: ${statusColor}">${tech.status}</span>
+          <span class="badge badge-category">${tech.category}</span>
         </div>
-        <svg class="expand-icon" id="icon-${i}" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
       </div>
-      <div class="meta">
-        <strong>${t.vendor}</strong> • ${t.category}
-        ${t.pricing ? `<span class="price"> • ${t.pricing}</span>` : ''}
-      </div>
-      <p class="desc">${t.description}</p>
-      ${t.problemSolves ? `<div class="problem"><strong>PROBLEMS IT SOLVES:</strong><p>${t.problemSolves}</p></div>` : ''}
-      ${t.useCases && t.useCases.length ? `<div class="tags">${t.useCases.slice(0,4).map(u => `<span class="tag">${u}</span>`).join('')}${t.useCases.length > 4 ? `<span class="tag" style="background:#e2e8f0;color:#64748b;">+${t.useCases.length-4} more</span>` : ''}</div>` : ''}
-      <div class="details" id="details-${i}">
-        <div class="details-grid">
-          <div>
-            <div class="detail-section">
-              <h4>Pricing</h4>
-              <p>${t.pricing || 'Contact vendor'}</p>
-            </div>
-            ${t.useCases && t.useCases.length ? `<div class="detail-section" style="margin-top:16px;"><h4>Use Cases</h4><ul>${t.useCases.map(u => `<li>${u}</li>`).join('')}</ul></div>` : ''}
-            ${t.aiCapabilities ? `<div class="detail-section" style="margin-top:16px;"><h4>AI Capabilities</h4><p>${t.aiCapabilities}</p></div>` : ''}
-          </div>
-          <div>
-            ${t.integrations ? `<div class="detail-section"><h4>Key Integrations</h4><p>${Array.isArray(t.integrations) ? t.integrations.join(', ') : t.integrations}</p></div>` : ''}
-            ${t.alternatives ? `<div class="detail-section" style="margin-top:16px;"><h4>Alternative Options</h4><p>${Array.isArray(t.alternatives) ? t.alternatives.join(', ') : t.alternatives}</p></div>` : ''}
-            ${t.notes ? `<div class="detail-section" style="margin-top:16px;"><h4>Additional Notes</h4><p>${t.notes}</p></div>` : ''}
-            ${t.contact ? `<div class="detail-section" style="margin-top:16px;"><h4>Contact</h4><p>${t.contact}</p></div>` : ''}
-          </div>
+      <div class="expand-icon" id="icon-${index}">▼</div>
+    </div>
+    <div class="tech-card-body" id="body-${index}">
+      <div class="tech-details">
+        <div class="detail-section">
+          <div class="detail-label">Description</div>
+          <div class="detail-content">${tech.description}</div>
         </div>
+        
+        ${tech.useCases ? `
+        <div class="detail-section">
+          <div class="detail-label">Use Cases</div>
+          <ul class="detail-list">
+            ${tech.useCases.map(uc => `<li>${uc}</li>`).join('')}
+          </ul>
+        </div>
+        ` : ''}
+        
+        ${tech.pricing ? `
+        <div class="detail-section">
+          <div class="detail-label">Pricing</div>
+          <div class="detail-content">${tech.pricing}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.integrations ? `
+        <div class="detail-section">
+          <div class="detail-label">Integrations</div>
+          <div class="detail-content">${tech.integrations.join(', ')}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.aiCapabilities ? `
+        <div class="detail-section">
+          <div class="detail-label">AI Capabilities</div>
+          <div class="detail-content">${tech.aiCapabilities}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.problemSolves ? `
+        <div class="detail-section">
+          <div class="detail-label">Problems Solved</div>
+          <div class="detail-content">${tech.problemSolves}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.alternatives ? `
+        <div class="detail-section">
+          <div class="detail-label">Alternatives</div>
+          <div class="detail-content">${tech.alternatives.join(', ')}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.contact ? `
+        <div class="detail-section">
+          <div class="detail-label">Contact</div>
+          <div class="detail-content">${tech.contact}</div>
+        </div>
+        ` : ''}
+        
+        ${tech.notes ? `
+        <div class="detail-section">
+          <div class="detail-label">Notes</div>
+          <div class="detail-content">${tech.notes}</div>
+        </div>
+        ` : ''}
       </div>
     </div>
-  `).join('');
+  `;
+  
+  return card;
 }
 
-window.toggleDetails = function(i) {
-  const details = document.getElementById(`details-${i}`);
-  const icon = document.getElementById(`icon-${i}`);
-  details.classList.toggle('show');
-  icon.classList.toggle('rotated');
-};
+function toggleCard(index) {
+  const body = document.getElementById(`body-${index}`);
+  const icon = document.getElementById(`icon-${index}`);
+  
+  body.classList.toggle('expanded');
+  icon.classList.toggle('expanded');
+}
 
-function toggleDarkMode() {
+function getStatusColor(status) {
+  const colors = {
+    'Active - Core': '#10b981',
+    'Active - Fringe': '#3b82f6',
+    'Emerging': '#8b5cf6',
+    'Recommended': '#06b6d4',
+    'Evaluating': '#f59e0b',
+    'Identified': '#64748b'
+  };
+  return colors[status] || '#64748b';
+}
+
+function updateStats(filteredCount = null) {
+  document.getElementById('totalCount').textContent = technologies.length;
+  document.getElementById('filteredCount').textContent = filteredCount !== null ? filteredCount : technologies.length;
+}
+
+function toggleTheme() {
   const html = document.documentElement;
-  const current = html.getAttribute('data-theme');
-  const newTheme = current === 'dark' ? 'light' : 'dark';
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? '' : 'dark';
+  
   html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
+  
+  const icon = document.getElementById('theme-icon');
+  const text = document.getElementById('theme-text');
+  
+  if (newTheme === 'dark') {
+    icon.textContent = '☀️';
+    text.textContent = 'Light Mode';
+  } else {
+    icon.textContent = '🌙';
+    text.textContent = 'Dark Mode';
+  }
 }
 
-function exportData() {
-  const data = JSON.stringify(technologies, null, 2);
-  const blob = new Blob([data], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
+function exportToCSV() {
+  const headers = ['Name', 'Vendor', 'Category', 'Status', 'Description', 'Use Cases', 'Pricing', 'Integrations', 'AI Capabilities', 'Problems Solved', 'Alternatives', 'Contact', 'Notes'];
+  
+  const rows = technologies.map(tech => [
+    tech.name,
+    tech.vendor,
+    tech.category,
+    tech.status,
+    tech.description,
+    tech.useCases ? tech.useCases.join('; ') : '',
+    tech.pricing || '',
+    tech.integrations ? tech.integrations.join('; ') : '',
+    tech.aiCapabilities || '',
+    tech.problemSolves || '',
+    tech.alternatives ? tech.alternatives.join('; ') : '',
+    tech.contact || '',
+    tech.notes || ''
+  ]);
+  
+  let csv = headers.join(',') + '\n';
+  rows.forEach(row => {
+    csv += row.map(cell => `"${cell}"`).join(',') + '\n';
+  });
+  
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'trueaero-technology-catalog.csv';
+  a.click();
+}
+
+function exportToJSON() {
+  const json = JSON.stringify(technologies, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = 'trueaero-technology-catalog.json';
   a.click();
-  URL.revokeObjectURL(url);
 }
-
-init();
 </script>
+
 </body>
 </html>
